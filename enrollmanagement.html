@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LoomLearn Learning Hub</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+        rgba(227,242,253,0.88),
+        rgba(187,222,251,0.88)
+    ),
+    url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
+
+    color:#1565c0;
+
+}
+
+.badge{
+
+display:inline-block;
+
+background:#1565c0;
+
+color:white;
+
+padding:8px 20px;
+
+border-radius:20px;
+
+margin-bottom:20px;
+
+font-size:14px;
+
+}
+
+/* Navbar */
+
+.navbar{
+
+    height:80px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 60px;
+
+    background:#1565c0;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:28px;
+    font-weight:bold;
+    color:white;
+}
+
+
+.logo img{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+
+.nav-links{
+    display:flex;
+    gap:15px;
+}
+
+
+.nav-links button{
+
+    background:white;
+    color:#1565c0;
+    border:none;
+    padding:12px 22px;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:bold;
+
+}
+
+.nav-btn{
+    background:white;
+    color:#1565c0;
+    border:none;
+    padding:12px 25px;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+
+/* Hero */
+
+.hero{
+    text-align:center;
+    padding:70px 20px 40px;
+}
+
+.hero h1{
+    font-size:48px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:20px;
+    max-width:750px;
+    margin:auto;
+    line-height:1.6;
+}
+
+
+/* Cards */
+
+.container{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+
+.card{
+
+    width:280px;
+    min-height:220px;
+    background:white;
+    color:#1565c0;
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(21,101,192,0.18);
+    transition:.3s;
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+}
+
+
+.card:hover{
+    transform:translateY(-10px);
+    background:white;
+    color:#1565c0;
+}
+
+
+.icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+
+.card h2{
+    margin-bottom:10px;
+}
+
+
+.card p{
+    font-size:15px;
+}
+
+
+
+/* Bottom Button */
+
+.start{
+    margin-top:45px;
+    text-align:center;
+}
+
+
+.start button{
+
+    padding:15px 45px;
+    border:none;
+    border-radius:30px;
+    background:#1565c0;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(21,101,192,0.25);
+
+}
+
+
+.start button:hover{
+
+    background:#0d47a1;
+
+}
+
+footer{
+    text-align:center;
+    margin-top:50px;
+    padding:20px;
+    background:rgba(0,0,0,0.15);
+}
+
+/* Statistics */
+
+.stats{
+
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+margin:40px;
+
+}
+
+
+.stat-box{
+
+width:220px;
+padding:25px;
+text-align:center;
+background:white;
+color:#1565c0;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(21,101,192,0.15);
+
+}
+
+.stat-box h1{
+
+font-size:40px;
+
+}
+
+
+
+
+
+/* Features */
+
+
+.features{
+
+text-align:center;
+padding:50px 20px;
+
+}
+
+
+.features h1,
+.process h1,
+.why h1{
+
+font-size:35px;
+margin-bottom:15px;
+
+}
+
+
+.feature-container{
+
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+margin-top:30px;
+
+}
+
+
+.feature-card{
+
+width:250px;
+padding:30px;
+background:white;
+color:#1565c0;
+border-radius:20px;
+
+}
+
+
+.feature-card span{
+
+font-size:45px;
+
+}
+
+
+.feature-card h2{
+
+margin:15px;
+
+}
+
+
+
+
+
+/* Process */
+
+
+.process{
+
+text-align:center;
+padding:50px 20px;
+
+}
+
+
+.steps{
+
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+
+}
+
+
+.steps div{
+
+    width:220px;
+    padding:30px;
+
+    background:#1565c0;
+
+    color:white;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(21,101,192,0.25);
+
+    transition:.3s;
+
+}
+
+
+.steps div:hover{
+
+    transform:translateY(-8px);
+
+    background:#0d47a1;
+
+}
+
+
+.steps h2{
+
+font-size:40px;
+color:white;
+
+}
+
+
+
+
+
+/* Why */
+
+
+.why{
+
+padding:50px;
+text-align:center;
+
+}
+
+
+.why p{
+
+font-size:18px;
+line-height:1.8;
+
+}
+
+
+.why-list{
+
+margin-top:25px;
+
+}
+
+
+
+.why-list p{
+
+background:white;
+color:#1565c0;
+display:inline-block;
+padding:12px 25px;
+border-radius:25px;
+margin:10px;
+
+}
+
+
+
+
+
+/* Quote */
+
+
+.quote{
+
+margin:40px;
+padding:40px;
+text-align:center;
+background:rgba(255,255,255,0.15);
+border-radius:25px;
+
+}
+
+
+.quote h1{
+
+font-style:italic;
+
+}
+footer{
+
+    text-align:center;
+
+    margin-top:50px;
+
+    padding:25px;
+
+    background:#1565c0;
+
+    color:white;
+
+    font-size:16px;
+
+    box-shadow:0 -5px 20px rgba(21,101,192,0.2);
+
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="navbar">
+
+<div class="logo">
+
+<img src="images/logo.jpeg">
+
+<span>LoomLearn</span>
+
+</div>
+
+
+<div class="nav-links">
+
+<button onclick="location.href='dashboard.html'">
+🏠 Dashboard
+</button>
+
+</div>
+
+
+</div>
+
+
+
+<section class="hero">
+<div class="badge">
+✨ Smart Learning Platform
+</div>
+<h1>Welcome to Your Learning Journey</h1>
+
+<p>
+Explore courses, manage enrollments, track sessions and discover
+a smarter way of learning with LoomLearn.
+</p>
+
+
+<div class="container">
+
+
+<div class="card">
+
+<div class="icon">🎓</div>
+
+<h2>Academic Growth</h2>
+
+<p>
+Build your knowledge with organized subjects and learning resources.
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="icon">📚</div>
+
+<h2>Smart Enrollment</h2>
+
+<p>
+Join courses easily and manage your academic activities.
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="icon">📊</div>
+
+<h2>Learning Insights</h2>
+
+<p>
+Analyze your progress and improve your learning experience.
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="start">
+
+<button onclick="location.href='Enrollment.html'">
+Go To Enrollment →
+</button>
+
+</div>
+
+
+</section>
+
+<!-- Statistics Section -->
+
+<section class="stats">
+
+<div class="stat-box">
+<h1>500+</h1>
+<p>Active Learners</p>
+</div>
+
+<div class="stat-box">
+<h1>50+</h1>
+<p>Courses Available</p>
+</div>
+
+<div class="stat-box">
+<h1>100+</h1>
+<p>Learning Sessions</p>
+</div>
+
+<div class="stat-box">
+<h1>95%</h1>
+<p>Success Rate</p>
+</div>
+
+</section>
+
+
+
+<!-- Features -->
+
+<section class="features">
+
+<h1>Everything You Need For Better Learning</h1>
+
+<p>
+LoomLearn provides a complete digital learning environment
+designed for students, educators and administrators.
+</p>
+
+
+<div class="feature-container">
+
+
+<div class="feature-card">
+<span>🚀</span>
+<h2>Easy Learning</h2>
+<p>
+Access organized courses and learning materials anytime.
+</p>
+</div>
+
+
+<div class="feature-card">
+<span>🔐</span>
+<h2>Secure Platform</h2>
+<p>
+Your academic data is protected with reliable technology.
+</p>
+</div>
+
+
+<div class="feature-card">
+<span>⏰</span>
+<h2>Session Tracking</h2>
+<p>
+Manage sessions and monitor learning activities effectively.
+</p>
+</div>
+
+
+<div class="feature-card">
+<span>🌐</span>
+<h2>Digital Classroom</h2>
+<p>
+Connect learners and create an interactive environment.
+</p>
+</div>
+
+
+</div>
+
+</section>
+
+
+
+
+<!-- Learning Process -->
+
+
+<section class="process">
+
+<h1>Your Learning Path</h1>
+
+
+<div class="steps">
+
+<div>
+<h2>01</h2>
+<p>Choose Your Course</p>
+</div>
+
+
+<div>
+<h2>02</h2>
+<p>Enroll Easily</p>
+</div>
+
+
+<div>
+<h2>03</h2>
+<p>Attend Sessions</p>
+</div>
+
+
+<div>
+<h2>04</h2>
+<p>Track Progress</p>
+</div>
+
+</div>
+
+
+</section>
+
+
+
+
+<!-- Why LoomLearn -->
+
+
+<section class="why">
+
+<h1>Why Choose LoomLearn?</h1>
+<h3>
+<p>
+
+LoomLearn combines smart management, modern technology and
+simple design to create a powerful educational experience.
+
+</p>
+</h3>
+
+<div class="why-list">
+
+<p>✔ Organized Academic Management</p>
+
+<p>✔ Faster Enrollment Process</p>
+
+<p>✔ Real Time Learning Insights</p>
+
+<p>✔ User Friendly Experience</p>
+
+<p>✔ Smart Digital Education System</p>
+
+</div>
+
+
+</section>
+
+
+
+
+<!-- Quote -->
+
+
+<section class="quote">
+
+<h1>
+"Learning is not about collecting information,
+it's about creating possibilities."
+</h1>
+
+<p>
+- LoomLearn Vision
+</p>
+
+</section>
+
+<footer>
+
+© 2026 LoomLearn | Empowering Digital Education
+
+</footer>
+
+
+</body>
+</html>

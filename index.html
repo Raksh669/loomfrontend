@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LoomLearn | Collaborative Peer-to-Peer Tutoring</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f5f9ff;
+color:#333;
+}
+
+header{
+background:#0d47a1;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+color:white;
+font-size:32px;
+font-weight:bold;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+height:50px;
+width:auto;
+display:block;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-size:17px;
+font-weight:bold;
+transition:.3s;
+}
+
+nav a:hover{
+color:#ffca28;
+}
+
+.hero{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:70px 8%;
+background:linear-gradient(120deg,#1565c0,#42a5f5);
+color:white;
+}
+
+.hero-text{
+width:55%;
+}
+
+.hero-text h1{
+font-size:52px;
+margin-bottom:20px;
+}
+
+.hero-text p{
+font-size:20px;
+line-height:1.8;
+margin-bottom:30px;
+}
+
+.btn{
+display:inline-block;
+padding:15px 35px;
+background:#ffca28;
+color:#000;
+text-decoration:none;
+border-radius:30px;
+font-weight:bold;
+transition:.3s;
+}
+
+.btn:hover{
+background:white;
+transform:scale(1.05);
+}
+
+.hero img{
+width:420px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+section{
+padding:70px 8%;
+}
+
+.title{
+text-align:center;
+font-size:38px;
+color:#0d47a1;
+margin-bottom:50px;
+}
+
+.about{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:40px;
+}
+
+.about img{
+height:300px;
+width:420px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+
+.about-text{
+flex:1;
+}
+
+.about-text p{
+font-size:18px;
+line-height:1.9;
+text-align:justify;
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+#features{
+background:#1565c0;;
+}
+
+#features .title{
+color:white;
+}
+
+#features .card{
+background:white;
+color:#333;
+}
+
+#features .card h3{
+color:#1565c0;
+}
+
+#features .card p{
+color:#333;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card img{
+width:100px;
+margin-bottom:20px;
+}
+
+.card h3{
+color:#1565c0;
+margin-bottom:15px;
+}
+
+.card p{
+line-height:1.7;
+}
+
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+}
+
+.stat{
+background:white;
+padding:35px;
+text-align:center;
+border-radius:15px;
+box-shadow:0 8px 18px rgba(0,0,0,.12);
+}
+
+.stat h1{
+font-size:45px;
+color:#1565c0;
+margin-bottom:10px;
+}
+
+.cta{
+background:#1565c0;
+color:white;
+text-align:center;
+padding:70px 8%;
+}
+
+.cta h2{
+font-size:40px;
+margin-bottom:20px;
+}
+
+.cta p{
+font-size:20px;
+margin-bottom:30px;
+}
+
+footer{
+background:#001b44;
+color:white;
+text-align:center;
+padding:30px;
+margin-top:40px;
+}
+
+@media(max-width:900px){
+
+.hero{
+flex-direction:column;
+text-align:center;
+}
+
+.hero-text{
+width:100%;
+}
+
+.hero img{
+margin-top:40px;
+width:100%;
+max-width:420px;
+}
+
+.about{
+flex-direction:column;
+}
+
+.about img{
+width:100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<img src="images\logo.jpeg" alt="LoomLearn Logo">
+<span>LoomLearn</span>
+</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#about">About</a>
+<a href="#features">Features</a>
+<a href="#contact">Contact</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>Empowering Collaborative Learning</h1>
+
+<p>
+LoomLearn is a modern collaborative peer-to-peer tutoring platform that connects learners with experienced mentors. Our platform provides secure authentication, tutoring session management, subject enrollment, mentor feedback, and academic analytics to create an engaging learning experience.
+</p>
+
+<a href="login.html" class="btn">Get Started</a>
+
+</div>
+
+<img src="images/hero.jpeg" alt="Collaborative Learning">
+
+</section>
+<section id="about">
+
+<h2 class="title">About LoomLearn</h2>
+
+<div class="about">
+
+<img src="images/about.jpeg" alt="About LoomLearn">
+
+<div class="about-text">
+
+<p>
+
+LoomLearn is a collaborative peer-to-peer tutoring platform designed to make learning more interactive, accessible, and engaging. The platform connects learners with qualified mentors through an intuitive and secure environment where knowledge sharing becomes simple and effective.
+
+<br><br>
+
+Learners can browse available tutoring sessions, enroll in courses, track their learning progress, and submit valuable feedback after completing sessions. Mentors can create, schedule, and manage tutoring sessions while helping students achieve their academic goals.
+
+<br><br>
+
+Academic administrators oversee the entire platform by managing users, subjects, and analytics. Support agents monitor feedback and assist users to ensure a smooth learning experience. With secure JWT authentication, role-based access control, and a responsive interface, LoomLearn delivers a reliable digital learning ecosystem.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="features">
+
+<h2 class="title">Our Features</h2>
+
+<div class="features">
+
+<div class="card">
+<img src="images/mentor.png" alt="Expert Mentors">
+<h3>Expert Mentors</h3>
+<p>Connect with experienced mentors who guide students through personalized tutoring sessions.</p>
+</div>
+
+<div class="card">
+<img src="images/session.jpeg" alt="Session Management">
+<h3>Session Management</h3>
+<p>Create, update, schedule and manage tutoring sessions with ease.</p>
+</div>
+
+<div class="card">
+<img src="images/security.jpeg" alt="Secure Login">
+<h3>Secure Login</h3>
+<p>JWT Authentication and Role-Based Access Control ensure maximum platform security.</p>
+</div>
+
+<div class="card">
+<img src="images/feedback.jpeg" alt="Feedback System">
+<h3>Feedback System</h3>
+<p>Learners can rate mentors and provide constructive feedback after every session.</p>
+</div>
+
+<div class="card">
+<img src="images/dashboard.jpeg" alt="Analytics Dashboard">
+<h3>Analytics Dashboard</h3>
+<p>View platform statistics, mentor performance and student engagement reports.</p>
+</div>
+
+<div class="card">
+<img src="images/community.jpeg" alt="Collaborative Learning">
+<h3>Collaborative Learning</h3>
+<p>Encourages teamwork, discussion, and knowledge sharing among learners and mentors.</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">Platform Statistics</h2>
+
+<div class="stats">
+
+<div class="stat">
+<h1>1000+</h1>
+<p>Registered Learners</p>
+</div>
+
+<div class="stat">
+<h1>250+</h1>
+<p>Professional Mentors</p>
+</div>
+
+<div class="stat">
+<h1>500+</h1>
+<p>Tutoring Sessions</p>
+</div>
+
+<div class="stat">
+<h1>98%</h1>
+<p>User Satisfaction</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="cta">
+
+<h2>Start Your Learning Journey Today</h2>
+
+<p>
+
+Join LoomLearn to connect with expert mentors, enhance your academic skills, and become part of a collaborative learning community.
+
+</p>
+
+<a href="register.html" class="btn">Register Now</a>
+
+</section>
+
+<section id="contact">
+
+<h2 class="title">Contact Us</h2>
+
+<div style="text-align:center;max-width:900px;margin:auto;line-height:2;font-size:18px;">
+
+<p>
+📍 <b>Address:</b> LoomLearn Education Center, Chennai, Tamil Nadu, India
+</p>
+
+<p>
+📧 <b>Email:</b> support@loomlearn.com
+</p>
+
+<p>
+📞 <b>Phone:</b> +91 98765 43210
+</p>
+
+<p>
+🌐 <b>Website:</b> www.loomlearn.com
+</p>
+
+<p style="margin-top:30px;">
+
+Follow us on
+
+<br><br>
+
+<a href="#" style="text-decoration:none;font-size:18px;">Facebook</a> |
+
+<a href="#" style="text-decoration:none;font-size:18px;">Instagram</a> |
+
+<a href="#" style="text-decoration:none;font-size:18px;">LinkedIn</a> |
+
+<a href="#" style="text-decoration:none;font-size:18px;">YouTube</a>
+
+</p>
+
+</div>
+
+</section>
+
+<footer>
+
+<h2 style="margin-bottom:15px;">LoomLearn</h2>
+
+<p style="font-size:17px;line-height:1.8;max-width:900px;margin:auto;">
+
+LoomLearn is a modern Collaborative Peer-to-Peer Tutoring System designed to connect learners, mentors, academic administrators, and support agents through an intelligent, secure, and interactive learning environment. Our mission is to empower education by making knowledge sharing accessible, engaging, and collaborative for everyone.
+
+</p>
+
+<br>
+
+<p>
+&copy; 2026 LoomLearn. All Rights Reserved.
+</p>
+
+<br>
+
+<p>
+Designed with ❤️ for Collaborative Learning
+</p>
+
+</footer>
+
+</body>
+</html>

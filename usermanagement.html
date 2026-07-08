@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>User Management | LoomLearn</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#eef8ff;
+    color:#333;
+}
+
+
+/* ================= NAVBAR ================= */
+
+nav{
+
+    width:100%;
+    height:75px;
+    background:#1565c0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 60px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+
+}
+
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+}
+
+
+.logo img{
+
+    width:45px;
+    height:45px;
+
+}
+
+
+.logo h2{
+
+    color:white;
+    font-size:28px;
+
+}
+
+
+.nav-links a{
+
+    text-decoration:none;
+    color:white;
+
+    font-size:16px;
+    font-weight:bold;
+
+    padding:10px 18px;
+    border-radius:8px;
+
+}
+
+
+.nav-links a:hover{
+
+    background:rgba(255,255,255,0.15);
+
+}
+
+
+/* ================= HERO ================= */
+
+
+.hero{
+
+    width:90%;
+    max-width:1200px;
+
+    margin:50px auto;
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:55px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:40px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.10);
+
+}
+
+
+.hero-left{
+
+    width:55%;
+
+}
+
+
+.badge{
+
+    display:inline-block;
+
+    background:#dcebff;
+
+    color:#1565c0;
+
+    padding:9px 18px;
+
+    border-radius:25px;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.hero-left h1{
+
+    font-size:48px;
+
+    color:#222;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.hero-left h1 span{
+
+    color:#1565c0;
+
+}
+
+
+
+.hero-left p{
+
+    font-size:17px;
+
+    color:#666;
+
+    line-height:1.8;
+
+}
+
+
+/* ================= BUTTONS ================= */
+
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+
+.primary-btn{
+
+    background:#1565c0;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 28px;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+.secondary-btn{
+
+    background:white;
+
+    color:#1565c0;
+
+    border:2px solid #1565c0;
+
+    padding:13px 26px;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+/* ================= IMAGE ================= */
+
+
+.hero-right{
+
+    width:45%;
+
+    text-align:center;
+
+}
+
+
+.hero-right img{
+
+    width:100%;
+
+    max-width:430px;
+
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+
+<div class="logo">
+
+<img src="images/logo.jpeg" alt="LoomLearn Logo">
+
+<h2>LoomLearn</h2>
+
+</div>
+
+
+<div class="nav-links">
+
+<a href="dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</a>
+
+</div>
+
+
+</nav>
+<!-- ================= HERO SECTION ================= -->
+
+<section class="hero">
+
+
+<div class="hero-left">
+
+
+<div class="badge">
+
+<i class="fa-solid fa-users"></i>
+
+User Administration Module
+
+</div>
+
+
+<h1>
+
+User <span>Management</span>
+
+</h1>
+
+
+<p>
+
+Welcome to the User Management workspace of
+<strong>LoomLearn</strong>. This module provides a simple
+and organized environment to maintain user information
+efficiently while creating a smooth administration
+experience.
+
+</p>
+
+
+<div class="hero-buttons">
+
+
+<button class="primary-btn"
+onclick="location.href='User.html'">
+
+<i class="fa-solid fa-arrow-right"></i>
+
+Enter User Portal
+
+</button>
+
+
+
+<button class="secondary-btn"
+onclick="location.href='dashboard.html'">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="hero-right">
+
+
+<img src="images/user.jpeg"
+alt="User Management Illustration">
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+<!-- ================= INTRO SECTION ================= -->
+
+
+<section style="
+width:90%;
+max-width:1200px;
+margin:60px auto;
+">
+
+
+<div style="
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+text-align:center;
+">
+
+
+<h2 style="
+color:#1565c0;
+font-size:32px;
+margin-bottom:20px;
+">
+
+Centralized User Management
+
+</h2>
+
+
+
+<p style="
+color:#666;
+font-size:17px;
+line-height:1.8;
+max-width:850px;
+margin:auto;
+">
+
+
+The User Management module acts as the foundation of the
+LoomLearn platform by providing a structured space for
+handling user information. It focuses on organization,
+accessibility, and a professional administration workflow
+that supports a better learning environment.
+
+
+</p>
+
+
+
+</div>
+
+
+</section>
+
+
+<!-- ================= OVERVIEW SECTION ================= -->
+
+<style>
+
+.overview{
+
+    width:90%;
+    max-width:1200px;
+    margin:70px auto;
+
+}
+
+
+.overview h2{
+
+    text-align:center;
+    color:#1565c0;
+    font-size:36px;
+    margin-bottom:15px;
+
+}
+
+
+.overview-desc{
+
+    text-align:center;
+    color:#666;
+    max-width:750px;
+    margin:0 auto 45px;
+    line-height:1.8;
+    font-size:17px;
+
+}
+
+
+.card-grid{
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+
+}
+
+
+
+.info-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:center;
+
+    box-shadow:0 8px 22px rgba(0,0,0,0.08);
+
+}
+
+
+
+.card-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:15px;
+
+    background:#e3f0ff;
+
+    color:#1565c0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+}
+
+
+
+.card-content h3{
+
+    color:#222;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.card-content p{
+
+    color:#666;
+
+    line-height:1.7;
+
+    font-size:15px;
+
+}
+
+
+</style>
+
+
+
+
+<section class="overview">
+
+
+<h2>
+
+Workspace Overview
+
+</h2>
+
+
+
+<p class="overview-desc">
+
+A professional workspace designed to keep user information
+organized, accessible, and efficiently managed throughout
+the LoomLearn platform.
+
+</p>
+
+
+
+<div class="card-grid">
+
+
+
+<div class="info-card">
+
+
+<div class="card-icon">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+
+<div class="card-content">
+
+
+<h3>
+
+User Directory
+
+</h3>
+
+
+<p>
+
+Maintain a structured collection of user information
+with a clear and organized approach.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="info-card">
+
+
+<div class="card-icon">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+</div>
+
+
+<div class="card-content">
+
+
+<h3>
+
+Secure Management
+
+</h3>
+
+
+<p>
+
+Support reliable administration with a secure and
+professional management environment.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="info-card">
+
+
+<div class="card-icon">
+
+<i class="fa-solid fa-folder-tree"></i>
+
+</div>
+
+
+<div class="card-content">
+
+
+<h3>
+
+Organized Records
+
+</h3>
+
+
+<p>
+
+Keep user details structured for better accessibility
+and efficient handling.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="info-card">
+
+
+<div class="card-icon">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+<div class="card-content">
+
+
+<h3>
+
+Efficient Workflow
+
+</h3>
+
+
+<p>
+A simple interface designed to improve productivity
+and administration experience.
+</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= WHY USER MANAGEMENT ================= -->
+<section style="
+width:90%;
+max-width:1200px;
+margin:70px auto;
+">
+<div style="
+background:white;
+border-radius:22px;
+padding:45px;
+display:flex;
+align-items:center;
+gap:50px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+">
+<div style="
+flex:1;
+">
+<div style="
+display:inline-block;
+background:#dcebff;
+color:#1565c0;
+padding:8px 18px;
+border-radius:25px;
+font-weight:bold;
+margin-bottom:20px;
+">
+<i class="fa-solid fa-lightbulb"></i>
+Why User Management?
+</div>
+<h2 style="
+font-size:36px;
+color:#222;
+margin-bottom:20px;
+">
+Building a Better Learning Platform
+</h2>
+<p style="
+color:#666;
+font-size:17px;
+line-height:1.9;
+">
+User Management is an important part of LoomLearn that
+helps maintain a structured and reliable user environment.
+It provides a clear approach to organizing information and
+supports smooth administration throughout the platform.
+</p>
+<div style="
+margin-top:25px;
+line-height:2.2;
+color:#444;
+font-weight:600;
+">
+<p>
+<i class="fa-solid fa-circle-check"
+style="color:#1565c0;"></i>
+Professional Administration
+</p>
+<p>
+<i class="fa-solid fa-circle-check"
+style="color:#1565c0;"></i>
+Organized User Information
+</p>
+<p>
+<i class="fa-solid fa-circle-check"
+style="color:#1565c0;"></i>
+Simple Navigation Experience
+</p>
+<p>
+<i class="fa-solid fa-circle-check"
+style="color:#1565c0;"></i>
+Reliable Platform Support
+</p>
+</div>
+</div>
+<div style="
+flex:1;
+text-align:center;
+">
+<img src="images/workspace.jpeg"
+alt="Workspace Illustration"
+style="
+width:100%;
+max-width:420px;
+">
+</div>
+</div>
+</section>
+<!-- ================= CONTINUE SECTION ================= -->
+<section style="
+width:90%;
+max-width:1200px;
+margin:50px auto;
+">
+<div style="
+background:#1565c0;
+color:white;
+border-radius:22px;
+padding:45px;
+text-align:center;
+">
+<h2 style="
+font-size:32px;
+margin-bottom:15px;
+">
+Ready to Manage Users?
+</h2>
+<p style="
+font-size:17px;
+line-height:1.8;
+margin-bottom:30px;
+">
+Continue to the User Operations portal and explore
+the management workspace of LoomLearn.
+</p>
+<button class="primary-btn"
+style="
+background:white;
+color:#1565c0;
+"
+onclick="location.href='User.html'">
+<i class="fa-solid fa-arrow-right"></i>
+Open User Portal
+</button>
+</div>
+</section>
+<!-- ================= FOOTER ================= -->
+<footer style="
+background:#0b1f3a;
+color:white;
+padding:35px 20px;
+text-align:center;
+margin-top:50px;
+">
+<h2 style="
+margin-bottom:10px;
+font-size:26px;
+">
+LoomLearn
+</h2>
+<p style="
+color:#d5e6ff;
+font-size:16px;
+line-height:1.8;
+">
+Collaborative Peer-to-Peer Tutoring Platform
+</p>
+<div style="
+margin-top:15px;
+font-size:14px;
+color:#b8cce5;
+">
+© 2026 LoomLearn. All Rights Reserved.
+</div>
+</footer>
+<!-- ================= RESPONSIVE ================= -->
+<style>
+@media(max-width:900px){
+nav{
+
+    padding:0 25px;
+
+}
+.hero{
+
+    flex-direction:column;
+
+    padding:35px;
+
+}
+.hero-left,
+.hero-right{
+
+    width:100%;
+
+    text-align:center;
+
+}
+.hero-buttons{
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+.card-grid{
+
+    grid-template-columns:1fr;
+
+}
+}
+@media(max-width:600px){
+.logo h2{
+
+    font-size:22px;
+
+}
+.hero-left h1{
+
+    font-size:36px;
+
+}
+.primary-btn,
+.secondary-btn{
+
+    width:100%;
+
+}
+.hero-buttons{
+
+    flex-direction:column;
+
+}
+}
+</style>
+</body>
+</html>

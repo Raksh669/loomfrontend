@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Academic User Operations | LoomLearn</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(to right,#dff8ff,#eefbff);
+    min-height:100vh;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    height:72px;
+    background:#0d47a1;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 30px;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo h2{
+    font-size:36px;
+    font-weight:bold;
+}
+
+.user-section{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+#welcomeText{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.logout-btn{
+    border:none;
+    background:#ff5c3a;
+    color:white;
+    padding:10px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#e64a19;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    width:92%;
+    margin:auto;
+    text-align:center;
+    padding-top:60px;
+}
+
+.icon-circle{
+    width:95px;
+    height:95px;
+    margin:auto;
+    border-radius:50%;
+    background:#dbeeff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:46px;
+    color:#0d47a1;
+}
+
+.main h1{
+    color:#0d47a1;
+    font-size:50px;
+    margin-top:18px;
+}
+
+.line{
+    width:110px;
+    height:5px;
+    background:#4f8df7;
+    border-radius:20px;
+    margin:18px auto 45px;
+}
+
+/* ================= BUTTONS ================= */
+
+.button-grid{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:22px;
+}
+
+.op-btn{
+
+    width:210px;
+    height:115px;
+
+    border:none;
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:22px;
+    font-weight:bold;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.15);
+
+    transition:.3s;
+}
+
+.op-btn:hover{
+    transform:translateY(-5px);
+}
+
+.op-btn span{
+    display:block;
+    margin-top:10px;
+    font-size:18px;
+}
+
+/* .btn-add{
+    background:#ffd9d9;
+} */
+
+.btn-getall{
+    background:#fff2b8;
+}
+
+.btn-get{
+    background:#e8ffd0;
+}
+
+.btn-update{
+    background:#dff0ff;
+}
+
+.btn-patch{
+    background:#efd8ff;
+}
+
+.btn-delete{
+    background:#ffe9c9;
+}
+
+/* ================= HOME BUTTON ================= */
+
+.home-btn{
+
+    margin-top:40px;
+
+    background:#0d47a1;
+    color:white;
+
+    border:none;
+
+    padding:16px 35px;
+
+    border-radius:10px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 10px rgba(0,0,0,.2);
+
+}
+
+.home-btn:hover{
+    background:#08306b;
+}
+
+/* ================= PANELS ================= */
+
+.panel{
+
+    display:none;
+
+    width:85%;
+    margin:40px auto;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+.panel.active{
+    display:block;
+}
+
+/* ================= FORM ================= */
+
+.form-group{
+    margin-bottom:18px;
+    text-align:left;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#0d47a1;
+    font-size:17px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+
+    width:100%;
+    padding:12px;
+    border:1px solid #cfd8dc;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+
+    border-color:#1976d2;
+
+}
+
+.submit-btn{
+
+    background:#0d47a1;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+
+}
+
+.submit-btn:hover{
+    background:#08306b;
+}
+
+.delete-btn{
+    background:#e53935;
+}
+
+.delete-btn:hover{
+    background:#c62828;
+}
+
+.response-box{
+
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    background:#f5f5f5;
+    border-left:5px solid #0d47a1;
+    border-radius:8px;
+
+}
+
+.response-box.show{
+    display:block;
+}
+
+table{
+
+    width:100%;
+    margin-top:15px;
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#0d47a1;
+    color:white;
+    padding:12px;
+
+}
+
+td{
+
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<div class="navbar">
+
+<div class="logo">
+<h2>🎓 Academic Users</h2>
+</div>
+
+<div class="user-section">
+
+<span id="welcomeText"></span>
+
+<button class="logout-btn" onclick="logout()">
+➡ Logout
+</button>
+
+</div>
+
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<div class="icon-circle">
+🎓
+</div>
+
+<h1>Academic User Operations</h1>
+
+<div class="line"></div>
+
+<div class="button-grid">
+
+<!-- <button class="op-btn btn-add" onclick="showPanel('panel-add')">
+➕
+<span>Register User</span>
+</button> -->
+
+<button class="op-btn btn-getall" onclick="showPanel('panel-getall')">
+📚
+<span>Get All Users</span>
+</button>
+
+<button class="op-btn btn-get" onclick="showPanel('panel-get')">
+🔍
+<span>Get User By ID</span>
+</button>
+
+<button class="op-btn btn-update" onclick="showPanel('panel-update')">
+✏️
+<span>Update User</span>
+</button>
+
+<button class="op-btn btn-patch" onclick="showPanel('panel-patch')">
+📝
+<span>Patch User</span>
+</button>
+
+<button class="op-btn btn-delete" onclick="showPanel('panel-delete')">
+🚮
+<span>Delete User</span>
+</button>
+
+</div>
+
+<br><br>
+
+<button class="home-btn"
+onclick="window.location.href='dashboard.html'">
+🏠 Back to Dashboard
+</button>
+
+</div>
+
+<!-- ================= GET ALL USERS ================= -->
+
+<div class="panel" id="panel-getall">
+
+<h2>All Academic Users</h2>
+
+<button class="submit-btn"
+onclick="getAllUsers()">
+
+Fetch All Users
+
+</button>
+
+<div class="response-box" id="res-getall"></div>
+
+</div>
+
+<!-- ================= GET USER ================= -->
+
+<div class="panel" id="panel-get">
+
+<h2>Get User By ID</h2>
+
+<div class="form-group">
+
+<label>User ID</label>
+
+<input type="number"
+id="get-id"
+placeholder="Enter User ID">
+
+</div>
+
+<button class="submit-btn"
+onclick="getUser()">
+
+Get User
+
+</button>
+
+<div class="response-box" id="res-get"></div>
+
+</div>
+
+<!-- ================= UPDATE USER ================= -->
+
+<div class="panel" id="panel-update">
+
+<h2>Update User</h2>
+
+<div class="form-group">
+<label>User ID</label>
+<input type="number"
+id="upd-id"
+placeholder="Enter User ID">
+</div>
+
+<div class="form-group">
+<label>Full Name</label>
+<input type="text"
+id="upd-fullname">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email"
+id="upd-email">
+</div>
+
+<div class="form-group">
+<label>Password</label>
+<input type="password"
+id="upd-password">
+</div>
+
+<div class="form-group">
+<label>Department</label>
+<input type="text"
+id="upd-department">
+</div>
+
+<div class="form-group">
+<label>Bio</label>
+<textarea id="upd-bio"
+rows="4"></textarea>
+</div>
+
+<div class="form-group">
+<label>Role</label>
+
+<select id="upd-role">
+
+<option value="ACADEMIC_ADMIN">ACADEMIC_ADMIN</option>
+<option value="SUPPORT_AGENT">SUPPORT_AGENT</option>
+
+</select>
+
+</div>
+
+<button class="submit-btn"
+onclick="updateUser()">
+
+Update User
+
+</button>
+
+<div class="response-box" id="res-update"></div>
+
+</div>
+
+<!-- ================= PATCH USER ================= -->
+
+<div class="panel" id="panel-patch">
+
+<h2>Patch User</h2>
+
+<div class="form-group">
+<label>User ID</label>
+<input type="number"
+id="patch-id"
+placeholder="Enter User ID">
+</div>
+
+<div class="form-group">
+<label>Full Name</label>
+<input type="text"
+id="patch-fullname"
+placeholder="Leave empty if not changing">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email"
+id="patch-email"
+placeholder="Leave empty if not changing">
+</div>
+
+<div class="form-group">
+<label>Password</label>
+<input type="password"
+id="patch-password"
+placeholder="Leave empty if not changing">
+</div>
+
+<div class="form-group">
+<label>Department</label>
+<input type="text"
+id="patch-department"
+placeholder="Leave empty if not changing">
+</div>
+
+<div class="form-group">
+<label>Bio</label>
+<textarea id="patch-bio"
+rows="4"
+placeholder="Leave empty if not changing"></textarea>
+</div>
+
+<div class="form-group">
+<label>Role</label>
+
+<select id="patch-role">
+
+<option value="">No Change</option>
+<option value="ACADEMIC_ADMIN">ACADEMIC_ADMIN</option>
+<option value="SUPPORT_AGENT">SUPPORT_AGENT</option>
+
+</select>
+
+</div>
+
+<button class="submit-btn"
+onclick="patchUser()">
+
+Patch User
+
+</button>
+
+<div class="response-box" id="res-patch"></div>
+
+</div>
+
+<!-- ================= DELETE USER ================= -->
+
+<div class="panel" id="panel-delete">
+
+<h2>Delete User</h2>
+
+<div class="form-group">
+
+<label>User ID</label>
+
+<input type="number"
+id="delete-id"
+placeholder="Enter User ID">
+
+</div>
+
+<button class="submit-btn delete-btn"
+onclick="deleteUser()">
+
+🗑 Delete User
+
+</button>
+
+<div class="response-box"
+id="res-delete"></div>
+
+</div>
+<script>
+
+const API = "https://loombackend-1.onrender.com/api/auth";
+
+const token = localStorage.getItem("token");
+
+/* ================= WELCOME ================= */
+
+const email = localStorage.getItem("email");
+
+if(email){
+
+    document.getElementById("welcomeText").innerHTML =
+    "Welcome, <b>"+email+"</b>";
+
+}
+else{
+
+    document.getElementById("welcomeText").innerHTML =
+    "Welcome";
+
+}
+
+/* ================= LOGIN CHECK ================= */
+
+if(token==null){
+
+    window.location.href="login.html";
+
+}
+
+/* ================= LOGOUT ================= */
+
+function logout(){
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("role");
+
+    window.location.href="login.html";
+
+}
+
+/* ================= SHOW PANEL ================= */
+
+function showPanel(id){
+
+    document.querySelectorAll(".panel").forEach(function(panel){
+
+        panel.classList.remove("active");
+
+    });
+
+    document.getElementById(id).classList.add("active");
+
+}
+
+/* ================= AUTH HEADERS ================= */
+
+function authHeaders(extra={}){
+
+    return Object.assign({
+
+        "Authorization":"Bearer "+token
+
+    },extra);
+
+}
+
+/* ================= RESPONSE ================= */
+
+function showResponse(id,message,error=false){
+
+    const box=document.getElementById(id);
+
+    box.className="response-box show";
+
+    box.style.borderLeft=
+    error ? "5px solid red" : "5px solid #0d47a1";
+
+    box.innerHTML=message;
+
+}
+
+/* ================= USER CARD ================= */
+
+function userCard(user){
+
+return `
+
+<strong>ID :</strong> ${user.id}<br><br>
+
+<strong>👤 Full Name :</strong> ${user.fullName ?? user.fullName}<br>
+
+<strong>📧 Email :</strong> ${user.email}<br>
+
+<strong>🏢 Department :</strong> ${user.department}<br>
+
+<strong>📝 Bio :</strong> ${user.bio}<br>
+
+<strong>🎓 Role :</strong> ${user.role}
+
+`;
+
+}
+
+/* ================= TABLE ================= */
+
+function buildTable(users){
+
+    if(users.length==0){
+
+        return "<h3>No Users Available</h3>";
+
+    }
+
+    let rows="";
+
+    users.forEach(function(u){
+
+        rows+=`
+
+<tr>
+
+<td>${u.id}</td>
+
+<td>${u.fullName ?? u.fullname}</td>
+
+<td>${u.email}</td>
+
+<td>${u.department}</td>
+
+<td>${u.bio}</td>
+
+<td>${u.role}</td>
+
+</tr>
+
+`;
+
+    });
+
+return `
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Full Name</th>
+
+<th>Email</th>
+
+<th>Department</th>
+
+<th>Bio</th>
+
+<th>Role</th>
+
+</tr>
+
+${rows}
+
+</table>
+
+`;
+
+}
+
+/* ================= STATUS ================= */
+
+function checkStatus(response){
+
+    if(response.status==401){
+
+        alert("Session Expired. Please Login Again.");
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("email");
+        localStorage.removeItem("role");
+
+        window.location.href="login.html";
+
+        return false;
+
+    }
+
+    if(response.status==403){
+
+        throw new Error("Access Denied.");
+
+    }
+
+    return true;
+
+}
+
+
+/* ================= GET ALL USERS ================= */
+
+async function getAllUsers(){
+
+    try{
+
+        const response=await fetch(API+"/get",{
+
+            headers:authHeaders()
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok){
+
+            throw new Error("Unable to fetch users.");
+
+        }
+
+        const data=await response.json();
+
+        showResponse(
+            "res-getall",
+            buildTable(data)
+        );
+
+    }
+
+    catch(error){
+
+        showResponse(
+            "res-getall",
+            error.message,
+            true
+        );
+
+    }
+
+}
+/* ================= GET USER ================= */
+
+async function getUser(){
+
+    const id=document.getElementById("get-id").value;
+
+    if(id==""){
+
+        showResponse("res-get","Please enter User ID.",true);
+        return;
+
+    }
+
+    try{
+
+        const response=await fetch(API+"/get/"+id,{
+            headers:authHeaders()
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("User not found.");
+
+        const data=await response.json();
+
+        showResponse("res-get",userCard(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-get",error.message,true);
+
+    }
+
+}
+
+/* ================= UPDATE USER ================= */
+
+async function updateUser(){
+
+    const id=document.getElementById("upd-id").value;
+
+    if(id==""){
+
+        showResponse("res-update","Please enter User ID.",true);
+        return;
+
+    }
+
+    const user={
+
+        fullName:document.getElementById("upd-fullname").value,
+        email:document.getElementById("upd-email").value,
+        password:document.getElementById("upd-password").value,
+        department:document.getElementById("upd-department").value,
+        bio:document.getElementById("upd-bio").value,
+        role:document.getElementById("upd-role").value
+
+    };
+
+    try{
+
+        const response=await fetch(API+"/put/"+id,{
+
+            method:"PUT",
+
+            headers:authHeaders({
+                "Content-Type":"application/json"
+            }),
+
+            body:JSON.stringify(user)
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to update user.");
+
+        const data=await response.json();
+
+        showResponse(
+            "res-update",
+            "User updated successfully.<br><br>"+userCard(data)
+        );
+
+    }
+
+    catch(error){
+
+        showResponse("res-update",error.message,true);
+
+    }
+
+}
+
+/* ================= PATCH USER ================= */
+
+async function patchUser(){
+
+    const id=document.getElementById("patch-id").value;
+
+    if(id==""){
+
+        showResponse("res-patch","Please enter User ID.",true);
+        return;
+
+    }
+
+    const user={};
+
+    if(document.getElementById("patch-fullname").value!="")
+        user.fullName=document.getElementById("patch-fullname").value;
+
+    if(document.getElementById("patch-email").value!="")
+        user.email=document.getElementById("patch-email").value;
+
+    if(document.getElementById("patch-password").value!="")
+        user.password=document.getElementById("patch-password").value;
+
+    if(document.getElementById("patch-department").value!="")
+        user.department=document.getElementById("patch-department").value;
+
+    if(document.getElementById("patch-bio").value!="")
+        user.bio=document.getElementById("patch-bio").value;
+
+    if(document.getElementById("patch-role").value!="")
+        user.role=document.getElementById("patch-role").value;
+
+    try{
+
+        const response=await fetch(API+"/patch/"+id,{
+
+            method:"PATCH",
+
+            headers:authHeaders({
+                "Content-Type":"application/json"
+            }),
+
+            body:JSON.stringify(user)
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to patch user.");
+
+        const data=await response.json();
+
+        showResponse(
+            "res-patch",
+            "User patched successfully.<br><br>"+userCard(data)
+        );
+
+    }
+
+    catch(error){
+
+        showResponse("res-patch",error.message,true);
+
+    }
+
+}
+
+/* ================= DELETE USER ================= */
+
+async function deleteUser(){
+
+    const id=document.getElementById("delete-id").value;
+
+    if(id==""){
+
+        showResponse("res-delete","Please enter User ID.",true);
+        return;
+
+    }
+
+    if(!confirm("Are you sure you want to delete this user?"))
+        return;
+
+    try{
+
+        const response=await fetch(API+"/delete/"+id,{
+
+            method:"DELETE",
+
+            headers:authHeaders()
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to delete user.");
+
+        const data=await response.json();
+
+        showResponse(
+            "res-delete",
+            "User deleted successfully.<br><br>"+userCard(data)
+        );
+
+        document.getElementById("delete-id").value="";
+
+    }
+
+    catch(error){
+
+        showResponse("res-delete",error.message,true);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

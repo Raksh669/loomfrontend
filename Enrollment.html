@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Enrollment Operations | LoomLearn</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(to right,#dff8ff,#eefbff);
+    min-height:100vh;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    height:72px;
+    background:#0d47a1;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 30px;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo h2{
+    font-size:36px;
+    font-weight:bold;
+}
+
+.user-section{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+#welcomeText{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.logout-btn{
+    border:none;
+    background:#ff5c3a;
+    color:white;
+    padding:10px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#e64a19;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    width:92%;
+    margin:auto;
+    text-align:center;
+    padding-top:60px;
+}
+
+.icon-circle{
+    width:95px;
+    height:95px;
+    margin:auto;
+    border-radius:50%;
+    background:#dbeeff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:46px;
+    color:#0d47a1;
+}
+
+.main h1{
+    color:#0d47a1;
+    font-size:50px;
+    margin-top:18px;
+}
+
+.line{
+    width:110px;
+    height:5px;
+    background:#4f8df7;
+    border-radius:20px;
+    margin:18px auto 45px;
+}
+
+/* ================= BUTTONS ================= */
+
+.button-grid{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:22px;
+}
+
+.op-btn{
+
+    width:210px;
+    height:115px;
+
+    border:none;
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:22px;
+    font-weight:bold;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.15);
+
+    transition:.3s;
+}
+
+.op-btn:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.op-btn span{
+
+    display:block;
+    margin-top:10px;
+    font-size:18px;
+
+}
+
+/* Card Colors */
+
+.btn-getall{
+    background:#fff2b8;
+}
+
+.btn-get{
+    background:#e8ffd0;
+}
+
+.btn-add{
+    background:#ffd9d9;
+}
+
+.btn-update{
+    background:#dff0ff;
+}
+
+.btn-patch{
+    background:#efd8ff;
+}
+
+.btn-delete{
+    background:#ffe9c9;
+}
+
+/* ================= HOME BUTTON ================= */
+
+.home-btn{
+
+    margin-top:40px;
+
+    background:#0d47a1;
+    color:white;
+
+    border:none;
+
+    padding:16px 35px;
+
+    border-radius:10px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 10px rgba(0,0,0,.2);
+
+}
+
+.home-btn:hover{
+
+    background:#08306b;
+
+}
+
+
+
+.panel{
+
+    display:none;
+
+    width:85%;
+    margin:40px auto;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+.panel.active{
+
+    display:block;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<div class="navbar">
+
+<div class="logo">
+
+<h2>📋 Enrollments</h2>
+
+</div>
+
+<div class="user-section">
+
+<span id="welcomeText"></span>
+
+<button class="logout-btn" onclick="logout()">
+➡ Logout
+</button>
+
+</div>
+
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<div class="icon-circle">
+📑
+</div>
+
+<h1>Enrollment Operations</h1>
+
+<div class="line"></div>
+
+<div class="button-grid">
+
+<button class="op-btn btn-add"
+onclick="showPanel('panel-add')">
+➕
+<span>Add Enrollment</span>
+</button>
+
+<button class="op-btn btn-getall"
+onclick="showPanel('panel-getall')">
+📚
+<span>Get All Enrollments</span>
+</button>
+
+<button class="op-btn btn-get"
+onclick="showPanel('panel-get')">
+🔍
+<span>Get Enrollment By ID</span>
+</button>
+
+<button class="op-btn btn-update"
+onclick="showPanel('panel-update')">
+✏️
+<span>Update Enrollment</span>
+</button>
+
+<button class="op-btn btn-patch"
+onclick="showPanel('panel-patch')">
+📝
+<span>Patch Enrollment</span>
+</button>
+
+<button class="op-btn btn-delete"
+onclick="showPanel('panel-delete')">
+🚮
+<span>Delete Enrollment</span>
+</button>
+
+</div>
+
+<br><br>
+
+<button class="home-btn"
+onclick="window.location.href='dashboard.html'">
+🏠 Back to Dashboard
+</button>
+
+</div>
+<!-- ================= ADD ENROLLMENT ================= -->
+
+<div class="panel" id="panel-add">
+
+<h2>Add Enrollment</h2>
+
+<div class="form-group">
+<label>Enrollment Date</label>
+<input type="datetime-local" id="add-date">
+</div>
+
+<div class="form-group">
+<label>Feedback Submitted</label>
+<select id="add-feedback">
+<option value="true">True</option>
+<option value="false">False</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Learner ID</label>
+<input type="number" id="add-learner" placeholder="Enter Learner ID">
+</div>
+
+<div class="form-group">
+<label>Session ID</label>
+<input type="number" id="add-session" placeholder="Enter Session ID">
+</div>
+
+<button class="submit-btn" onclick="addEnrollment()">
+Create Enrollment
+</button>
+
+<div class="response-box" id="res-add"></div>
+
+</div>
+
+<!-- ================= GET ALL ENROLLMENTS ================= -->
+
+<div class="panel" id="panel-getall">
+
+<h2>All Enrollments</h2>
+
+<button class="submit-btn" onclick="getAllEnrollments()">
+Fetch All Enrollments
+</button>
+
+<div class="response-box" id="res-getall"></div>
+
+</div>
+
+<!-- ================= GET ENROLLMENT ================= -->
+
+<div class="panel" id="panel-get">
+
+<h2>Get Enrollment By ID</h2>
+
+<div class="form-group">
+<label>Enrollment ID</label>
+<input type="number" id="get-id" placeholder="Enter Enrollment ID">
+</div>
+
+<button class="submit-btn" onclick="getEnrollment()">
+Get Enrollment
+</button>
+
+<div class="response-box" id="res-get"></div>
+
+</div>
+
+<!-- ================= UPDATE ENROLLMENT ================= -->
+
+<div class="panel" id="panel-update">
+
+<h2>Update Enrollment</h2>
+
+<div class="form-group">
+<label>Enrollment ID</label>
+<input type="number" id="upd-id" placeholder="Enter Enrollment ID">
+</div>
+
+<div class="form-group">
+<label>Enrollment Date</label>
+<input type="datetime-local" id="upd-date">
+</div>
+
+<div class="form-group">
+<label>Feedback Submitted</label>
+<select id="upd-feedback">
+<option value="true">True</option>
+<option value="false">False</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Learner ID</label>
+<input type="number" id="upd-learner" placeholder="Enter Learner ID">
+</div>
+
+<div class="form-group">
+<label>Session ID</label>
+<input type="number" id="upd-session" placeholder="Enter Session ID">
+</div>
+
+<button class="submit-btn" onclick="updateEnrollment()">
+Update Enrollment
+</button>
+
+<div class="response-box" id="res-update"></div>
+
+</div>
+
+<!-- ================= PATCH ENROLLMENT ================= -->
+
+<div class="panel" id="panel-patch">
+
+<h2>Patch Enrollment</h2>
+
+<div class="form-group">
+<label>Enrollment ID</label>
+<input type="number" id="patch-id" placeholder="Enter Enrollment ID">
+</div>
+
+<div class="form-group">
+<label>Enrollment Date</label>
+<input type="datetime-local" id="patch-date">
+</div>
+
+<div class="form-group">
+<label>Feedback Submitted</label>
+<select id="patch-feedback">
+<option value="">No Change</option>
+<option value="true">True</option>
+<option value="false">False</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Learner ID</label>
+<input type="number" id="patch-learner" placeholder="Leave empty if not changing">
+</div>
+
+<div class="form-group">
+<label>Session ID</label>
+<input type="number" id="patch-session" placeholder="Leave empty if not changing">
+</div>
+
+<button class="submit-btn" onclick="patchEnrollment()">
+Patch Enrollment
+</button>
+
+<div class="response-box" id="res-patch"></div>
+
+</div>
+
+<!-- ================= DELETE ENROLLMENT ================= -->
+
+<div class="panel" id="panel-delete">
+
+<h2>Delete Enrollment</h2>
+
+<div class="form-group">
+<label>Enrollment ID</label>
+<input type="number" id="delete-id" placeholder="Enter Enrollment ID">
+</div>
+
+<button class="submit-btn delete-btn"
+onclick="deleteEnrollment()">
+Delete Enrollment
+</button>
+
+<div class="response-box" id="res-delete"></div>
+
+</div>
+
+<style>
+
+.form-group{
+    margin-bottom:18px;
+    text-align:left;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#0d47a1;
+    font-size:17px;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    padding:12px;
+    border:1px solid #cfd8dc;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:#1976d2;
+}
+
+.submit-btn{
+    background:#0d47a1;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.submit-btn:hover{
+    background:#08306b;
+}
+
+.delete-btn{
+    background:#e53935;
+}
+
+.delete-btn:hover{
+    background:#c62828;
+}
+
+.response-box{
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    background:#f5f5f5;
+    border-left:5px solid #0d47a1;
+    border-radius:8px;
+}
+
+.response-box.show{
+    display:block;
+}
+
+table{
+    width:100%;
+    margin-top:15px;
+    border-collapse:collapse;
+}
+
+th{
+    background:#0d47a1;
+    color:white;
+    padding:12px;
+}
+
+td{
+    border:1px solid #ddd;
+    padding:10px;
+}
+
+</style>
+
+<script>
+const API = "https://loombackend-1.onrender.com/api/enrollments";
+
+const token = localStorage.getItem("token");
+
+/* ===== Welcome Email ===== */
+
+const email = localStorage.getItem("email");
+
+if(email){
+
+    document.getElementById("welcomeText").innerHTML =
+    "Welcome, <b>"+email+"</b>";
+
+}
+else{
+
+    document.getElementById("welcomeText").innerHTML =
+    "Welcome";
+
+}
+
+/* ===== Authentication ===== */
+
+if(token==null){
+
+    window.location.href="login.html";
+
+}
+
+/* ===== Logout ===== */
+
+function logout(){
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("email");
+
+    window.location.href="login.html";
+
+}
+
+/* ===== Show Selected Panel ===== */
+
+function showPanel(id){
+
+    document.querySelectorAll(".panel").forEach(function(panel){
+
+        panel.classList.remove("active");
+
+    });
+
+    document.getElementById(id).classList.add("active");
+
+}
+
+/* ===== Authorization Header ===== */
+
+function authHeaders(extra={}){
+
+    return Object.assign({
+
+        "Authorization":"Bearer "+token
+
+    },extra);
+
+}
+
+/* ===== Response Box ===== */
+
+function showResponse(id,message,error=false){
+
+    const box=document.getElementById(id);
+
+    box.className="response-box show";
+
+    box.style.borderLeft=
+    error?"5px solid red":"5px solid #0d47a1";
+
+    box.innerHTML=message;
+
+}
+
+/* ===== Enrollment Card ===== */
+
+function enrollmentCard(enrollment){
+
+    return `
+
+<strong>ID :</strong> ${enrollment.id}<br><br>
+
+<strong>Enrollment Date :</strong> ${enrollment.enrollmentDate}<br>
+
+<strong>Feedback Submitted :</strong> ${enrollment.feedbackSubmitted}<br>
+
+<strong>Learner ID :</strong> ${enrollment.learnerId}<br>
+
+<strong>Session ID :</strong> ${enrollment.sessionId}
+
+`;
+
+}
+
+/* ===== Build Table ===== */
+
+function buildTable(enrollments){
+
+    if(enrollments.length==0){
+
+        return "<h3>No Enrollments Found</h3>";
+
+    }
+
+    let rows="";
+
+    enrollments.forEach(function(e){
+
+        rows+=`
+
+<tr>
+
+<td>${e.id}</td>
+
+<td>${e.enrollmentDate}</td>
+
+<td>${e.feedbackSubmitted}</td>
+
+<td>${e.learnerId}</td>
+
+<td>${e.sessionId}</td>
+
+</tr>
+
+`;
+
+    });
+
+    return `
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Enrollment Date</th>
+
+<th>Feedback</th>
+
+<th>Learner ID</th>
+
+<th>Session ID</th>
+
+</tr>
+
+${rows}
+
+</table>
+
+`;
+
+}
+
+/* ===== Check Status ===== */
+
+function checkStatus(response){
+
+    if(response.status==401){
+
+        alert("Session Expired. Please Login Again.");
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        localStorage.removeItem("email");
+
+        window.location.href="login.html";
+
+        return false;
+
+    }
+
+    if(response.status==403){
+
+        throw new Error("Access Denied.");
+
+    }
+
+    return true;
+
+}
+
+
+/* ================= ADD ENROLLMENT ================= */
+
+async function addEnrollment(){
+
+    const enrollment={
+
+        enrollmentDate:document.getElementById("add-date").value,
+        feedbackSubmitted:document.getElementById("add-feedback").value==="true",
+        learnerId:Number(document.getElementById("add-learner").value),
+        sessionId:Number(document.getElementById("add-session").value)
+
+    };
+
+    try{
+
+        const response=await fetch(API+"/post",{
+
+            method:"POST",
+
+            headers:authHeaders({
+                "Content-Type":"application/json"
+            }),
+
+            body:JSON.stringify(enrollment)
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to create enrollment.");
+
+        const data=await response.json();
+
+        showResponse("res-add",
+        "Enrollment created successfully.<br><br>"+enrollmentCard(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-add",error.message,true);
+
+    }
+
+}
+
+/* ================= GET ALL ENROLLMENTS ================= */
+
+async function getAllEnrollments(){
+
+    try{
+
+        const response=await fetch(API+"/get",{
+
+            headers:authHeaders()
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to fetch enrollments.");
+
+        const data=await response.json();
+
+        showResponse("res-getall",buildTable(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-getall",error.message,true);
+
+    }
+
+}
+
+/* ================= GET ENROLLMENT ================= */
+
+async function getEnrollment(){
+
+    const id=document.getElementById("get-id").value;
+
+    if(id==""){
+
+        showResponse("res-get","Please enter Enrollment ID.",true);
+
+        return;
+
+    }
+
+    try{
+
+        const response=await fetch(API+"/get/"+id,{
+
+            headers:authHeaders()
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Enrollment not found.");
+
+        const data=await response.json();
+
+        showResponse("res-get",enrollmentCard(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-get",error.message,true);
+
+    }
+
+}
+
+/* ================= UPDATE ENROLLMENT ================= */
+
+async function updateEnrollment(){
+
+    const id=document.getElementById("upd-id").value;
+
+    if(id==""){
+
+        showResponse("res-update","Please enter Enrollment ID.",true);
+
+        return;
+
+    }
+
+    const enrollment={
+
+        enrollmentDate:document.getElementById("upd-date").value,
+        feedbackSubmitted:document.getElementById("upd-feedback").value==="true",
+        learnerId:Number(document.getElementById("upd-learner").value),
+        sessionId:Number(document.getElementById("upd-session").value)
+
+    };
+
+    try{
+
+        const response=await fetch(API+"/put/"+id,{
+
+            method:"PUT",
+
+            headers:authHeaders({
+                "Content-Type":"application/json"
+            }),
+
+            body:JSON.stringify(enrollment)
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to update enrollment.");
+
+        const data=await response.json();
+
+        showResponse("res-update",
+        "Enrollment updated successfully.<br><br>"+enrollmentCard(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-update",error.message,true);
+
+    }
+
+}
+
+/* ================= PATCH ENROLLMENT ================= */
+
+async function patchEnrollment(){
+
+    const id=document.getElementById("patch-id").value;
+
+    if(id==""){
+
+        showResponse("res-patch","Please enter Enrollment ID.",true);
+
+        return;
+
+    }
+
+    const enrollment={};
+
+    if(document.getElementById("patch-date").value!="")
+        enrollment.enrollmentDate=document.getElementById("patch-date").value;
+
+    if(document.getElementById("patch-feedback").value!="")
+        enrollment.feedbackSubmitted=
+        document.getElementById("patch-feedback").value==="true";
+
+    if(document.getElementById("patch-learner").value!="")
+        enrollment.learnerId=
+        Number(document.getElementById("patch-learner").value);
+
+    if(document.getElementById("patch-session").value!="")
+        enrollment.sessionId=
+        Number(document.getElementById("patch-session").value);
+
+    try{
+
+        const response=await fetch(API+"/patch/"+id,{
+
+            method:"PATCH",
+
+            headers:authHeaders({
+                "Content-Type":"application/json"
+            }),
+
+            body:JSON.stringify(enrollment)
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to patch enrollment.");
+
+        const data=await response.json();
+
+        showResponse("res-patch",
+        "Enrollment patched successfully.<br><br>"+enrollmentCard(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-patch",error.message,true);
+
+    }
+
+}
+
+/* ================= DELETE ENROLLMENT ================= */
+
+async function deleteEnrollment(){
+
+    const id=document.getElementById("delete-id").value;
+
+    if(id==""){
+
+        showResponse("res-delete","Please enter Enrollment ID.",true);
+
+        return;
+
+    }
+
+    if(!confirm("Are you sure you want to delete this enrollment?"))
+        return;
+
+    try{
+
+        const response=await fetch(API+"/delete/"+id,{
+
+            method:"DELETE",
+
+            headers:authHeaders()
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to delete enrollment.");
+
+        const data=await response.json();
+
+        showResponse("res-delete",
+        "Enrollment deleted successfully.<br><br>"+enrollmentCard(data));
+
+        document.getElementById("delete-id").value="";
+
+    }
+
+    catch(error){
+
+        showResponse("res-delete",error.message,true);
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

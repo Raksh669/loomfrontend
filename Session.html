@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Session Operations | LoomLearn</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(to right,#dff8ff,#eefbff);
+    min-height:100vh;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    height:72px;
+    background:#0d47a1;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 30px;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo h2{
+    font-size:36px;
+    font-weight:bold;
+}
+
+.user-section{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+#welcomeText{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.logout-btn{
+    border:none;
+    background:#ff5c3a;
+    color:white;
+    padding:10px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#e64a19;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    width:92%;
+    margin:auto;
+    text-align:center;
+    padding-top:60px;
+}
+
+.icon-circle{
+    width:95px;
+    height:95px;
+    margin:auto;
+    border-radius:50%;
+    background:#dbeeff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:46px;
+    color:#0d47a1;
+}
+
+.main h1{
+    color:#0d47a1;
+    font-size:50px;
+    margin-top:18px;
+}
+
+.line{
+    width:110px;
+    height:5px;
+    background:#4f8df7;
+    border-radius:20px;
+    margin:18px auto 45px;
+}
+
+/* ================= BUTTONS ================= */
+
+.button-grid{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:22px;
+}
+
+.op-btn{
+    width:210px;
+    height:115px;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    font-size:22px;
+    font-weight:bold;
+    box-shadow:0 6px 15px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.op-btn:hover{
+    transform:translateY(-5px);
+}
+
+.op-btn span{
+    display:block;
+    margin-top:10px;
+    font-size:18px;
+}
+
+/* Card Colors */
+
+.btn-add{
+    background:#ffd9d9;
+}
+
+.btn-getall{
+    background:#fff2b8;
+}
+
+.btn-get{
+    background:#e8ffd0;
+}
+
+.btn-update{
+    background:#dff0ff;
+}
+
+.btn-patch{
+    background:#efd8ff;
+}
+
+.btn-delete{
+    background:#ffe9c9;
+}
+
+/* ================= HOME BUTTON ================= */
+
+.home-btn{
+    margin-top:40px;
+    background:#0d47a1;
+    color:white;
+    border:none;
+    padding:16px 35px;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 5px 10px rgba(0,0,0,.2);
+}
+
+.home-btn:hover{
+    background:#08306b;
+}
+
+/* ================= PANELS ================= */
+
+.panel{
+    display:none;
+    width:85%;
+    margin:40px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.panel.active{
+    display:block;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<div class="navbar">
+
+<div class="logo">
+<h2>📅 Sessions</h2>
+</div>
+
+<div class="user-section">
+
+<span id="welcomeText"></span>
+
+<button class="logout-btn" onclick="logout()">
+➡ Logout
+</button>
+
+</div>
+
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<div class="icon-circle">
+📅
+</div>
+
+<h1>Session Operations</h1>
+
+<div class="line"></div>
+
+<div class="button-grid">
+
+<button class="op-btn btn-add"
+onclick="showPanel('panel-add')">
+➕
+<span>Create Session</span>
+</button>
+
+<button class="op-btn btn-getall"
+onclick="showPanel('panel-getall')">
+📚
+<span>Get All Sessions</span>
+</button>
+
+<button class="op-btn btn-get"
+onclick="showPanel('panel-get')">
+🔍
+<span>Get Session By ID</span>
+</button>
+
+<button class="op-btn btn-update"
+onclick="showPanel('panel-update')">
+✏️
+<span>Update Session</span>
+</button>
+
+<button class="op-btn btn-patch"
+onclick="showPanel('panel-patch')">
+📝
+<span>Patch Session</span>
+</button>
+
+<button class="op-btn btn-delete"
+onclick="showPanel('panel-delete')">
+🚮
+<span>Delete Session</span>
+</button>
+
+</div>
+
+<br><br>
+
+<button class="home-btn"
+onclick="window.location.href='dashboard.html'">
+🏠 Back to Dashboard
+</button>
+
+</div>
+<!-- ================= CREATE SESSION ================= -->
+
+<div class="panel" id="panel-add">
+
+<h2>Create Session</h2>
+
+<div class="form-group">
+<label>Title</label>
+<input type="text" id="add-title" placeholder="Enter Session Title">
+</div>
+
+<div class="form-group">
+<label>Description</label>
+<input type="text" id="add-description" placeholder="Enter Description">
+</div>
+
+<div class="form-group">
+<label>Start Time</label>
+<input type="datetime-local" id="add-start">
+</div>
+
+<div class="form-group">
+<label>End Time</label>
+<input type="datetime-local" id="add-end">
+</div>
+
+<div class="form-group">
+<label>Maximum Capacity</label>
+<input type="number" id="add-max" placeholder="Enter Maximum Capacity">
+</div>
+
+<div class="form-group">
+<label>Mentor ID</label>
+<input type="number" id="add-mentor" placeholder="Enter Mentor ID">
+</div>
+
+<div class="form-group">
+<label>Subject ID</label>
+<input type="number" id="add-subject" placeholder="Enter Subject ID">
+</div>
+
+<button class="submit-btn" onclick="addSession()">
+Create Session
+</button>
+
+<div class="response-box" id="res-add"></div>
+
+</div>
+
+<!-- ================= GET ALL SESSIONS ================= -->
+
+<div class="panel" id="panel-getall">
+
+<h2>All Sessions</h2>
+
+<button class="submit-btn" onclick="getAllSessions()">
+Fetch All Sessions
+</button>
+
+<div class="response-box" id="res-getall"></div>
+
+</div>
+
+<!-- ================= GET SESSION ================= -->
+
+<div class="panel" id="panel-get">
+
+<h2>Get Session By ID</h2>
+
+<div class="form-group">
+<label>Session ID</label>
+<input type="number" id="get-id" placeholder="Enter Session ID">
+</div>
+
+<button class="submit-btn" onclick="getSession()">
+Get Session
+</button>
+
+<div class="response-box" id="res-get"></div>
+
+</div>
+
+<!-- ================= UPDATE SESSION ================= -->
+
+<div class="panel" id="panel-update">
+
+<h2>Update Session</h2>
+
+<div class="form-group">
+<label>Session ID</label>
+<input type="number" id="upd-id" placeholder="Enter Session ID">
+</div>
+
+<div class="form-group">
+<label>Title</label>
+<input type="text" id="upd-title">
+</div>
+
+<div class="form-group">
+<label>Description</label>
+<input type="text" id="upd-description">
+</div>
+
+<div class="form-group">
+<label>Start Time</label>
+<input type="datetime-local" id="upd-start">
+</div>
+
+<div class="form-group">
+<label>End Time</label>
+<input type="datetime-local" id="upd-end">
+</div>
+
+<div class="form-group">
+<label>Maximum Capacity</label>
+<input type="number" id="upd-max">
+</div>
+
+<div class="form-group">
+<label>Current Enrollment</label>
+<input type="number" id="upd-current">
+</div>
+
+<div class="form-group">
+<label>Status</label>
+<input type="text" id="upd-status">
+</div>
+
+<div class="form-group">
+<label>Mentor ID</label>
+<input type="number" id="upd-mentor">
+</div>
+
+<div class="form-group">
+<label>Subject ID</label>
+<input type="number" id="upd-subject">
+</div>
+
+<button class="submit-btn" onclick="updateSession()">
+Update Session
+</button>
+
+<div class="response-box" id="res-update"></div>
+
+</div>
+
+<!-- ================= PATCH SESSION ================= -->
+
+<div class="panel" id="panel-patch">
+
+<h2>Patch Session</h2>
+
+<div class="form-group">
+<label>Session ID</label>
+<input type="number" id="patch-id" placeholder="Enter Session ID">
+</div>
+
+<div class="form-group">
+<label>Title</label>
+<input type="text" id="patch-title" placeholder="Leave empty if no change">
+</div>
+
+<div class="form-group">
+<label>Description</label>
+<input type="text" id="patch-description" placeholder="Leave empty if no change">
+</div>
+
+<div class="form-group">
+<label>Start Time</label>
+<input type="datetime-local" id="patch-start">
+</div>
+
+<div class="form-group">
+<label>End Time</label>
+<input type="datetime-local" id="patch-end">
+</div>
+
+<div class="form-group">
+<label>Maximum Capacity</label>
+<input type="number" id="patch-max" placeholder="Leave empty if no change">
+</div>
+
+<div class="form-group">
+<label>Current Enrollment</label>
+<input type="number" id="patch-current" placeholder="Leave empty if no change">
+</div>
+
+<div class="form-group">
+<label>Status</label>
+<input type="text" id="patch-status" placeholder="Leave empty if no change">
+</div>
+
+<div class="form-group">
+<label>Mentor ID</label>
+<input type="number" id="patch-mentor" placeholder="Leave empty if no change">
+</div>
+
+<div class="form-group">
+<label>Subject ID</label>
+<input type="number" id="patch-subject" placeholder="Leave empty if no change">
+</div>
+
+<button class="submit-btn" onclick="patchSession()">
+Patch Session
+</button>
+
+<div class="response-box" id="res-patch"></div>
+
+</div>
+
+<!-- ================= DELETE SESSION ================= -->
+
+<div class="panel" id="panel-delete">
+
+<h2>Delete Session</h2>
+
+<div class="form-group">
+<label>Session ID</label>
+<input type="number" id="delete-id" placeholder="Enter Session ID">
+</div>
+
+<button class="submit-btn delete-btn" onclick="deleteSession()">
+Delete Session
+</button>
+
+<div class="response-box" id="res-delete"></div>
+
+</div>
+
+<style>
+
+.form-group{
+    margin-bottom:18px;
+    text-align:left;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#0d47a1;
+    font-size:17px;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    padding:12px;
+    border:1px solid #cfd8dc;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:#1976d2;
+}
+
+.submit-btn{
+    background:#0d47a1;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.submit-btn:hover{
+    background:#08306b;
+}
+
+.delete-btn{
+    background:#e53935;
+}
+
+.delete-btn:hover{
+    background:#c62828;
+}
+
+.response-box{
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    background:#f5f5f5;
+    border-left:5px solid #0d47a1;
+    border-radius:8px;
+}
+
+.response-box.show{
+    display:block;
+}
+
+table{
+    width:100%;
+    margin-top:15px;
+    border-collapse:collapse;
+}
+
+th{
+    background:#0d47a1;
+    color:white;
+    padding:12px;
+}
+
+td{
+    border:1px solid #ddd;
+    padding:10px;
+}
+
+</style>
+
+<script>
+
+const API = "https://loombackend-1.onrender.com/api/sessions";
+
+const token = localStorage.getItem("token");
+
+/* ===== Welcome Email ===== */
+
+const email = localStorage.getItem("email");
+
+if(email){
+
+    document.getElementById("welcomeText").innerHTML =
+    "Welcome, <b>"+email+"</b>";
+
+}
+else{
+
+    document.getElementById("welcomeText").innerHTML =
+    "Welcome";
+
+}
+
+/* ===== Authentication ===== */
+
+if(token==null){
+
+    window.location.href="login.html";
+
+}
+
+/* ===== Logout ===== */
+
+function logout(){
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("email");
+
+    window.location.href="login.html";
+
+}
+
+/* ===== Show Panel ===== */
+
+function showPanel(id){
+
+    document.querySelectorAll(".panel").forEach(function(panel){
+
+        panel.classList.remove("active");
+
+    });
+
+    document.getElementById(id).classList.add("active");
+
+}
+
+/* ===== Authorization Header ===== */
+
+function authHeaders(extra={}){
+
+    return Object.assign({
+
+        "Authorization":"Bearer "+token
+
+    },extra);
+
+}
+
+/* ===== Response Box ===== */
+
+function showResponse(id,message,error=false){
+
+    const box=document.getElementById(id);
+
+    box.className="response-box show";
+
+    box.style.borderLeft=
+    error ? "5px solid red" : "5px solid #0d47a1";
+
+    box.innerHTML=message;
+
+}
+
+/* ===== Session Card ===== */
+
+function sessionCard(session){
+
+return `
+
+<strong>ID :</strong> ${session.id}<br><br>
+
+<strong>Title :</strong> ${session.title}<br>
+
+<strong>Description :</strong> ${session.description}<br>
+
+<strong>Start Time :</strong> ${session.startTime}<br>
+
+<strong>End Time :</strong> ${session.endTime}<br>
+
+<strong>Maximum Capacity :</strong> ${session.maxCapacity}<br>
+
+<strong>Current Enrollment :</strong> ${session.currentEnrollment}<br>
+
+<strong>Status :</strong> ${session.status}<br>
+
+<strong>Mentor ID :</strong> ${session.mentorId}<br>
+
+<strong>Subject ID :</strong> ${session.subjectId}
+
+`;
+
+}
+
+/* ===== Build Table ===== */
+
+function buildTable(sessions){
+
+    if(sessions.length==0){
+
+        return "<h3>No Sessions Found</h3>";
+
+    }
+
+    let rows="";
+
+    sessions.forEach(function(s){
+
+        rows+=`
+
+<tr>
+
+<td>${s.id}</td>
+
+<td>${s.title}</td>
+
+<td>${s.startTime}</td>
+
+<td>${s.endTime}</td>
+
+<td>${s.maxCapacity}</td>
+
+<td>${s.currentEnrollment}</td>
+
+<td>${s.status}</td>
+
+<td>${s.mentorId}</td>
+
+<td>${s.subjectId}</td>
+
+</tr>
+
+`;
+
+    });
+
+    return `
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Title</th>
+
+<th>Start Time</th>
+
+<th>End Time</th>
+
+<th>Max Capacity</th>
+
+<th>Current</th>
+
+<th>Status</th>
+
+<th>Mentor</th>
+
+<th>Subject</th>
+
+</tr>
+
+${rows}
+
+</table>
+
+`;
+
+}
+
+/* ===== Check Status ===== */
+
+function checkStatus(response){
+
+    if(response.status==401){
+
+        alert("Session Expired. Please Login Again.");
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        localStorage.removeItem("email");
+
+        window.location.href="login.html";
+
+        return false;
+
+    }
+
+    if(response.status==403){
+
+        throw new Error("Access Denied.");
+
+    }
+
+    return true;
+
+}
+/* ================= ADD SESSION ================= */
+
+async function addSession(){
+
+    const session={
+
+        title:document.getElementById("add-title").value,
+
+        description:document.getElementById("add-description").value,
+
+        startTime:document.getElementById("add-start").value,
+
+        endTime:document.getElementById("add-end").value,
+
+        maxCapacity:Number(document.getElementById("add-max").value),
+
+        mentorId:Number(document.getElementById("add-mentor").value),
+
+        subjectId:Number(document.getElementById("add-subject").value)
+
+    };
+
+    try{
+
+        const response=await fetch(API+"/post",{
+
+            method:"POST",
+
+            headers:authHeaders({
+                "Content-Type":"application/json"
+            }),
+
+            body:JSON.stringify(session)
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to create session.");
+
+        const data=await response.json();
+
+        showResponse("res-add",
+        "Session created successfully.<br><br>"+sessionCard(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-add",error.message,true);
+
+    }
+
+}
+
+/* ================= GET ALL SESSIONS ================= */
+
+async function getAllSessions(){
+
+    try{
+
+        const response=await fetch(API+"/get",{
+
+            headers:authHeaders()
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to fetch sessions.");
+
+        const data=await response.json();
+
+        showResponse("res-getall",buildTable(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-getall",error.message,true);
+
+    }
+
+}
+
+/* ================= GET SESSION ================= */
+
+async function getSession(){
+
+    const id=document.getElementById("get-id").value;
+
+    if(id==""){
+
+        showResponse("res-get","Please enter Session ID.",true);
+
+        return;
+
+    }
+
+    try{
+
+        const response=await fetch(API+"/get/"+id,{
+
+            headers:authHeaders()
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Session not found.");
+
+        const data=await response.json();
+
+        showResponse("res-get",sessionCard(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-get",error.message,true);
+
+    }
+
+}
+/* ================= UPDATE SESSION ================= */
+
+async function updateSession(){
+
+    const id=document.getElementById("upd-id").value;
+
+    if(id==""){
+
+        showResponse("res-update","Please enter Session ID.",true);
+
+        return;
+
+    }
+
+    const session={
+
+        title:document.getElementById("upd-title").value,
+
+        description:document.getElementById("upd-description").value,
+
+        startTime:document.getElementById("upd-start").value,
+
+        endTime:document.getElementById("upd-end").value,
+
+        maxCapacity:Number(document.getElementById("upd-max").value),
+
+        currentEnrollment:Number(document.getElementById("upd-current").value),
+
+        status:document.getElementById("upd-status").value,
+
+        mentorId:Number(document.getElementById("upd-mentor").value),
+
+        subjectId:Number(document.getElementById("upd-subject").value)
+
+    };
+
+    try{
+
+        const response=await fetch(API+"/put/"+id,{
+
+            method:"PUT",
+
+            headers:authHeaders({
+                "Content-Type":"application/json"
+            }),
+
+            body:JSON.stringify(session)
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to update session.");
+
+        const data=await response.json();
+
+        showResponse(
+            "res-update",
+            "Session updated successfully.<br><br>"+sessionCard(data)
+        );
+
+    }
+
+    catch(error){
+
+        showResponse("res-update",error.message,true);
+
+    }
+
+}
+
+/* ================= PATCH SESSION ================= */
+
+async function patchSession(){
+
+    const id=document.getElementById("patch-id").value;
+
+    if(id==""){
+
+        showResponse("res-patch","Please enter Session ID.",true);
+
+        return;
+
+    }
+
+    const session={};
+
+    if(document.getElementById("patch-title").value!="")
+        session.title=document.getElementById("patch-title").value;
+
+    if(document.getElementById("patch-description").value!="")
+        session.description=document.getElementById("patch-description").value;
+
+    if(document.getElementById("patch-start").value!="")
+        session.startTime=document.getElementById("patch-start").value;
+
+    if(document.getElementById("patch-end").value!="")
+        session.endTime=document.getElementById("patch-end").value;
+
+    if(document.getElementById("patch-max").value!="")
+        session.maxCapacity=
+        Number(document.getElementById("patch-max").value);
+
+    if(document.getElementById("patch-current").value!="")
+        session.currentEnrollment=
+        Number(document.getElementById("patch-current").value);
+
+    if(document.getElementById("patch-status").value!="")
+        session.status=document.getElementById("patch-status").value;
+
+    if(document.getElementById("patch-mentor").value!="")
+        session.mentorId=
+        Number(document.getElementById("patch-mentor").value);
+
+    if(document.getElementById("patch-subject").value!="")
+        session.subjectId=
+        Number(document.getElementById("patch-subject").value);
+
+    try{
+
+        const response=await fetch(API+"/patch/"+id,{
+
+            method:"PATCH",
+
+            headers:authHeaders({
+                "Content-Type":"application/json"
+            }),
+
+            body:JSON.stringify(session)
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to patch session.");
+
+        const data=await response.json();
+
+        showResponse(
+            "res-patch",
+            "Session patched successfully.<br><br>"+sessionCard(data)
+        );
+
+    }
+
+    catch(error){
+
+        showResponse("res-patch",error.message,true);
+
+    }
+
+}
+
+/* ================= DELETE SESSION ================= */
+
+async function deleteSession(){
+
+    const id=document.getElementById("delete-id").value;
+
+    if(id==""){
+
+        showResponse("res-delete","Please enter Session ID.",true);
+
+        return;
+
+    }
+
+    if(!confirm("Are you sure you want to delete this session?"))
+        return;
+
+    try{
+
+        const response=await fetch(API+"/delete/"+id,{
+
+            method:"DELETE",
+
+            headers:authHeaders()
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok){
+
+    throw new Error("Session not found");
+
+}
+
+        const data=await response.json();
+
+        showResponse(
+            "res-delete",
+            "Session deleted successfully.<br><br>"+sessionCard(data)
+        );
+
+        document.getElementById("delete-id").value="";
+
+    }
+
+    catch(error){
+
+        showResponse("res-delete",error.message,true);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

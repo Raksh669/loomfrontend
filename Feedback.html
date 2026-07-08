@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Feedback Operations | LoomLearn</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(to right,#dff8ff,#eefbff);
+    min-height:100vh;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    height:72px;
+    background:#0d47a1;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 30px;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo h2{
+    font-size:36px;
+    font-weight:bold;
+}
+
+.user-section{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+#welcomeText{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.logout-btn{
+    border:none;
+    background:#ff5c3a;
+    color:white;
+    padding:10px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#e64a19;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    width:92%;
+    margin:auto;
+    text-align:center;
+    padding-top:60px;
+}
+
+.icon-circle{
+    width:95px;
+    height:95px;
+    margin:auto;
+    border-radius:50%;
+    background:#dbeeff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:46px;
+    color:#0d47a1;
+}
+
+.main h1{
+    color:#0d47a1;
+    font-size:50px;
+    margin-top:18px;
+}
+
+.line{
+    width:110px;
+    height:5px;
+    background:#4f8df7;
+    border-radius:20px;
+    margin:18px auto 45px;
+}
+
+/* ================= BUTTONS ================= */
+
+.button-grid{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:22px;
+}
+
+.op-btn{
+
+    width:210px;
+    height:115px;
+
+    border:none;
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:22px;
+    font-weight:bold;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.15);
+
+    transition:.3s;
+}
+
+.op-btn:hover{
+    transform:translateY(-5px);
+}
+
+.op-btn span{
+    display:block;
+    margin-top:10px;
+    font-size:18px;
+}
+
+/* Button Colors */
+
+.btn-add{
+    background:#ffd9d9;
+}
+
+.btn-getall{
+    background:#fff2b8;
+}
+
+.btn-get{
+    background:#e8ffd0;
+}
+
+.btn-update{
+    background:#dff0ff;
+}
+
+.btn-patch{
+    background:#efd8ff;
+}
+
+.btn-delete{
+    background:#ffe9c9;
+}
+
+/* ================= HOME BUTTON ================= */
+
+.home-btn{
+
+    margin-top:40px;
+
+    background:#0d47a1;
+    color:white;
+
+    border:none;
+
+    padding:16px 35px;
+
+    border-radius:10px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 10px rgba(0,0,0,.2);
+
+}
+
+.home-btn:hover{
+    background:#08306b;
+}
+
+/* ================= PANELS ================= */
+
+.panel{
+
+    display:none;
+
+    width:85%;
+    margin:40px auto;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+.panel.active{
+    display:block;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<div class="navbar">
+
+<div class="logo">
+<h2>⭐ Feedbacks</h2>
+</div>
+
+<div class="user-section">
+
+<span id="welcomeText"></span>
+
+<button class="logout-btn" onclick="logout()">
+➡ Logout
+</button>
+
+</div>
+
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<div class="icon-circle">
+📋
+</div>
+
+<h1>Feedback Operations</h1>
+
+<div class="line"></div>
+
+<div class="button-grid">
+
+<button class="op-btn btn-add"
+onclick="showPanel('panel-add')">
+⭐
+<span>Add Feedback</span>
+</button>
+
+<button class="op-btn btn-getall"
+onclick="showPanel('panel-getall')">
+🌟
+<span>Get All Feedback</span>
+</button>
+
+<button class="op-btn btn-get"
+onclick="showPanel('panel-get')">
+🔎
+<span>Get Feedback By ID</span>
+</button>
+
+<button class="op-btn btn-update"
+onclick="showPanel('panel-update')">
+✏️
+<span>Update Feedback</span>
+</button>
+
+<button class="op-btn btn-patch"
+onclick="showPanel('panel-patch')">
+📝
+<span>Patch Feedback</span>
+</button>
+
+<button class="op-btn btn-delete"
+onclick="showPanel('panel-delete')">
+🚮
+<span>Delete Feedback</span>
+</button>
+
+</div>
+
+<br><br>
+
+<button class="home-btn"
+onclick="window.location.href='dashboard.html'">
+🏠 Back to Dashboard
+</button>
+
+</div>
+<!-- ================= ADD FEEDBACK ================= -->
+
+<div class="panel" id="panel-add">
+
+<h2>Add Feedback</h2>
+
+<div class="form-group">
+<label>Rating (1 - 5)</label>
+<input type="number" id="add-rating" min="1" max="5"
+placeholder="Enter Rating">
+</div>
+
+<div class="form-group">
+<label>Comment</label>
+<textarea id="add-comment" rows="4"
+placeholder="Enter Comment (20-100 characters)"></textarea>
+</div>
+
+<div class="form-group">
+<label>Learner ID</label>
+<input type="number" id="add-learner"
+placeholder="Enter Learner ID">
+</div>
+
+<div class="form-group">
+<label>Mentor ID</label>
+<input type="number" id="add-mentor"
+placeholder="Enter Mentor ID">
+</div>
+
+<div class="form-group">
+<label>Session ID</label>
+<input type="number" id="add-session"
+placeholder="Enter Session ID">
+</div>
+
+<button class="submit-btn"
+onclick="addFeedback()">
+Submit Feedback
+</button>
+
+<div class="response-box" id="res-add"></div>
+
+</div>
+
+<!-- ================= GET ALL FEEDBACK ================= -->
+
+<div class="panel" id="panel-getall">
+
+<h2>All Feedback</h2>
+
+<button class="submit-btn"
+onclick="getAllFeedback()">
+Fetch All Feedback
+</button>
+
+<div class="response-box" id="res-getall"></div>
+
+</div>
+
+<style>
+
+.form-group{
+    margin-bottom:18px;
+    text-align:left;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#0d47a1;
+    font-size:17px;
+}
+
+.form-group input,
+.form-group textarea{
+
+    width:100%;
+    padding:12px;
+    border:1px solid #cfd8dc;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+    resize:vertical;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    border-color:#1976d2;
+
+}
+
+.submit-btn{
+
+    background:#0d47a1;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+
+}
+
+.submit-btn:hover{
+
+    background:#08306b;
+
+}
+
+.delete-btn{
+
+    background:#e53935;
+
+}
+
+.delete-btn:hover{
+
+    background:#c62828;
+
+}
+
+.response-box{
+
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    background:#f5f5f5;
+    border-left:5px solid #0d47a1;
+    border-radius:8px;
+
+}
+
+.response-box.show{
+
+    display:block;
+
+}
+
+table{
+
+    width:100%;
+    margin-top:15px;
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#0d47a1;
+    color:white;
+    padding:12px;
+
+}
+
+td{
+
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+
+}
+
+</style>
+<!-- ================= GET FEEDBACK ================= -->
+
+<div class="panel" id="panel-get">
+
+<h2>Get Feedback By ID</h2>
+
+<div class="form-group">
+<label>Feedback ID</label>
+<input type="number" id="get-id" placeholder="Enter Feedback ID">
+</div>
+
+<button class="submit-btn" onclick="getFeedback()">
+Get Feedback
+</button>
+
+<div class="response-box" id="res-get"></div>
+
+</div>
+
+<!-- ================= UPDATE FEEDBACK ================= -->
+
+<div class="panel" id="panel-update">
+
+<h2>Update Feedback</h2>
+
+<div class="form-group">
+<label>Feedback ID</label>
+<input type="number" id="upd-id" placeholder="Enter Feedback ID">
+</div>
+
+<div class="form-group">
+<label>Rating (1 - 5)</label>
+<input type="number" id="upd-rating" min="1" max="5"
+placeholder="Enter Rating">
+</div>
+
+<div class="form-group">
+<label>Comment</label>
+<textarea id="upd-comment" rows="4"
+placeholder="Enter Comment (20-100 characters)"></textarea>
+</div>
+
+<div class="form-group">
+<label>Learner ID</label>
+<input type="number" id="upd-learner"
+placeholder="Enter Learner ID">
+</div>
+
+<div class="form-group">
+<label>Mentor ID</label>
+<input type="number" id="upd-mentor"
+placeholder="Enter Mentor ID">
+</div>
+
+<div class="form-group">
+<label>Session ID</label>
+<input type="number" id="upd-session"
+placeholder="Enter Session ID">
+</div>
+
+<button class="submit-btn" onclick="updateFeedback()">
+Update Feedback
+</button>
+
+<div class="response-box" id="res-update"></div>
+
+</div>
+
+<!-- ================= PATCH FEEDBACK ================= -->
+
+<div class="panel" id="panel-patch">
+
+<h2>Patch Feedback</h2>
+
+<div class="form-group">
+<label>Feedback ID</label>
+<input type="number" id="patch-id" placeholder="Enter Feedback ID">
+</div>
+
+<div class="form-group">
+<label>Rating (1 - 5)</label>
+<input type="number" id="patch-rating" min="1" max="5"
+placeholder="Leave empty if not changing">
+</div>
+
+<div class="form-group">
+<label>Comment</label>
+<textarea id="patch-comment" rows="4"
+placeholder="Leave empty if not changing"></textarea>
+</div>
+
+<div class="form-group">
+<label>Learner ID</label>
+<input type="number" id="patch-learner"
+placeholder="Leave empty if not changing">
+</div>
+
+<div class="form-group">
+<label>Mentor ID</label>
+<input type="number" id="patch-mentor"
+placeholder="Leave empty if not changing">
+</div>
+
+<div class="form-group">
+<label>Session ID</label>
+<input type="number" id="patch-session"
+placeholder="Leave empty if not changing">
+</div>
+
+<button class="submit-btn" onclick="patchFeedback()">
+Patch Feedback
+</button>
+
+<div class="response-box" id="res-patch"></div>
+
+</div>
+<!-- ================= DELETE FEEDBACK ================= -->
+
+<div class="panel" id="panel-delete">
+
+<h2>Delete Feedback</h2>
+
+<div class="form-group">
+<label>Feedback ID</label>
+<input type="number" id="delete-id" placeholder="Enter Feedback ID">
+</div>
+
+<button class="submit-btn delete-btn"
+onclick="deleteFeedback()">
+🚮 Delete Feedback
+</button>
+
+<div class="response-box" id="res-delete"></div>
+
+</div>
+
+<script>
+
+const API = "https://loombackend-1.onrender.com/feedback";
+
+const token = localStorage.getItem("token");
+
+/* ===== Welcome Email ===== */
+
+const email = localStorage.getItem("email");
+
+if(email){
+
+    document.getElementById("welcomeText").innerHTML =
+    "Welcome, <b>"+email+"</b>";
+
+}
+else{
+
+    document.getElementById("welcomeText").innerHTML =
+    "Welcome";
+
+}
+
+/* ===== Authentication ===== */
+
+if(token==null){
+
+    window.location.href="login.html";
+
+}
+
+/* ===== Logout ===== */
+
+function logout(){
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("email");
+
+    window.location.href="login.html";
+
+}
+
+/* ===== Show Selected Panel ===== */
+
+function showPanel(id){
+
+    document.querySelectorAll(".panel").forEach(function(panel){
+
+        panel.classList.remove("active");
+
+    });
+
+    document.getElementById(id).classList.add("active");
+
+}
+
+/* ===== Authorization Header ===== */
+
+function authHeaders(extra={}){
+
+    return Object.assign({
+
+        "Authorization":"Bearer "+token
+
+    },extra);
+
+}
+
+/* ===== Response Box ===== */
+
+function showResponse(id,message,error=false){
+
+    const box=document.getElementById(id);
+
+    box.className="response-box show";
+
+    box.style.borderLeft =
+    error ? "5px solid red" : "5px solid #0d47a1";
+
+    box.innerHTML = message;
+
+}
+
+/* ===== Feedback Card ===== */
+
+function feedbackCard(feedback){
+
+return `
+
+<strong>ID :</strong> ${feedback.id}<br><br>
+
+<strong>⭐ Rating :</strong> ${feedback.rating}<br>
+
+<strong>💬 Comment :</strong> ${feedback.comment}<br>
+
+<strong>👨‍🎓 Learner ID :</strong> ${feedback.learnerId}<br>
+
+<strong>👨‍🏫 Mentor ID :</strong> ${feedback.mentorId}<br>
+
+<strong>📅 Session ID :</strong> ${feedback.sessionId}
+
+`;
+
+}
+
+/* ===== Build Table ===== */
+
+function buildTable(feedbacks){
+
+    if(feedbacks.length==0){
+
+        return "<h3>No Feedback Available</h3>";
+
+    }
+
+    let rows="";
+
+    feedbacks.forEach(function(f){
+
+        rows += `
+
+<tr>
+
+<td>${f.id}</td>
+
+<td>${f.rating}</td>
+
+<td>${f.comment}</td>
+
+<td>${f.learnerId}</td>
+
+<td>${f.mentorId}</td>
+
+<td>${f.sessionId}</td>
+
+</tr>
+
+`;
+
+    });
+
+    return `
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Rating</th>
+
+<th>Comment</th>
+
+<th>Learner ID</th>
+
+<th>Mentor ID</th>
+
+<th>Session ID</th>
+
+</tr>
+
+${rows}
+
+</table>
+
+`;
+
+}
+
+/* ===== Check Status ===== */
+
+function checkStatus(response){
+
+    if(response.status==401){
+
+        alert("Session Expired. Please Login Again.");
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        localStorage.removeItem("email");
+
+        window.location.href="login.html";
+
+        return false;
+
+    }
+
+    if(response.status==403){
+
+        throw new Error("Access Denied.");
+
+    }
+
+    return true;
+
+}
+
+
+/* ================= ADD FEEDBACK ================= */
+
+async function addFeedback(){
+
+    const feedback={
+
+        rating:Number(document.getElementById("add-rating").value),
+        comment:document.getElementById("add-comment").value,
+        learnerId:Number(document.getElementById("add-learner").value),
+        mentorId:Number(document.getElementById("add-mentor").value),
+        sessionId:Number(document.getElementById("add-session").value)
+
+    };
+
+    try{
+
+        const response=await fetch(API+"/post",{
+
+            method:"POST",
+
+            headers:authHeaders({
+                "Content-Type":"application/json"
+            }),
+
+            body:JSON.stringify(feedback)
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to add feedback.");
+
+        const data=await response.json();
+
+        showResponse("res-add",
+        "Feedback added successfully.<br><br>"+feedbackCard(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-add",error.message,true);
+
+    }
+
+}
+
+/* ================= GET ALL FEEDBACK ================= */
+
+async function getAllFeedback(){
+
+    try{
+
+        const response=await fetch(API+"/getFeedback",{
+
+            headers:authHeaders()
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to fetch feedback.");
+
+        const data=await response.json();
+
+        showResponse("res-getall",buildTable(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-getall",error.message,true);
+
+    }
+
+}
+
+/* ================= GET FEEDBACK ================= */
+
+async function getFeedback(){
+
+    const id=document.getElementById("get-id").value;
+
+    if(id==""){
+
+        showResponse("res-get","Please enter Feedback ID.",true);
+
+        return;
+
+    }
+
+    try{
+
+        const response=await fetch(API+"/get/"+id,{
+
+            headers:authHeaders()
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Feedback not found.");
+
+        const data=await response.json();
+
+        showResponse("res-get",feedbackCard(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-get",error.message,true);
+
+    }
+
+}
+
+/* ================= UPDATE FEEDBACK ================= */
+
+async function updateFeedback(){
+
+    const id=document.getElementById("upd-id").value;
+
+    if(id==""){
+
+        showResponse("res-update","Please enter Feedback ID.",true);
+
+        return;
+
+    }
+
+    const feedback={
+
+        rating:Number(document.getElementById("upd-rating").value),
+        comment:document.getElementById("upd-comment").value,
+        learnerId:Number(document.getElementById("upd-learner").value),
+        mentorId:Number(document.getElementById("upd-mentor").value),
+        sessionId:Number(document.getElementById("upd-session").value)
+
+    };
+
+    try{
+
+        const response=await fetch(API+"/put/"+id,{
+
+            method:"PUT",
+
+            headers:authHeaders({
+                "Content-Type":"application/json"
+            }),
+
+            body:JSON.stringify(feedback)
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to update feedback.");
+
+        const data=await response.json();
+
+        showResponse("res-update",
+        "Feedback updated successfully.<br><br>"+feedbackCard(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-update",error.message,true);
+
+    }
+
+}
+
+/* ================= PATCH FEEDBACK ================= */
+
+async function patchFeedback(){
+
+    const id=document.getElementById("patch-id").value;
+
+    if(id==""){
+
+        showResponse("res-patch","Please enter Feedback ID.",true);
+
+        return;
+
+    }
+
+    const feedback={};
+
+    if(document.getElementById("patch-rating").value!="")
+        feedback.rating=
+        Number(document.getElementById("patch-rating").value);
+
+    if(document.getElementById("patch-comment").value!="")
+        feedback.comment=
+        document.getElementById("patch-comment").value;
+
+    if(document.getElementById("patch-learner").value!="")
+        feedback.learnerId=
+        Number(document.getElementById("patch-learner").value);
+
+    if(document.getElementById("patch-mentor").value!="")
+        feedback.mentorId=
+        Number(document.getElementById("patch-mentor").value);
+
+    if(document.getElementById("patch-session").value!="")
+        feedback.sessionId=
+        Number(document.getElementById("patch-session").value);
+
+    try{
+
+        const response=await fetch(API+"/patch/"+id,{
+
+            method:"PATCH",
+
+            headers:authHeaders({
+                "Content-Type":"application/json"
+            }),
+
+            body:JSON.stringify(feedback)
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to patch feedback.");
+
+        const data=await response.json();
+
+        showResponse("res-patch",
+        "Feedback patched successfully.<br><br>"+feedbackCard(data));
+
+    }
+
+    catch(error){
+
+        showResponse("res-patch",error.message,true);
+
+    }
+
+}
+
+/* ================= DELETE FEEDBACK ================= */
+
+async function deleteFeedback(){
+
+    const id=document.getElementById("delete-id").value;
+
+    if(id==""){
+
+        showResponse("res-delete","Please enter Feedback ID.",true);
+
+        return;
+
+    }
+
+    if(!confirm("Are you sure you want to delete this feedback?"))
+        return;
+
+    try{
+
+        const response=await fetch(API+"/delete/"+id,{
+
+            method:"DELETE",
+
+            headers:authHeaders()
+
+        });
+
+        if(!checkStatus(response)) return;
+
+        if(!response.ok)
+            throw new Error("Unable to delete feedback.");
+
+        const data=await response.json();
+
+        showResponse("res-delete",
+        "Feedback deleted successfully.<br><br>"+feedbackCard(data));
+
+        document.getElementById("delete-id").value="";
+
+    }
+
+    catch(error){
+
+        showResponse("res-delete",error.message,true);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

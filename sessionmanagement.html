@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LoomLearn | Session Management</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f4f8fc;
+    color:#263238;
+}
+
+
+/* Navbar */
+
+.navbar{
+    height:70px;
+    background:#1565c0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 60px;
+    color:white;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.logo i{
+    font-size:30px;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:16px;
+}
+
+
+/* Hero */
+
+.hero{
+
+    min-height:500px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:60px;
+
+    background:
+    linear-gradient(
+    rgba(21,101,192,0.15),
+    rgba(21,101,192,0.05)
+    );
+
+}
+
+
+.hero-content{
+    width:50%;
+}
+
+
+.hero-content h1{
+
+    font-size:48px;
+    color:#1565c0;
+    margin-bottom:20px;
+
+}
+
+
+.hero-content p{
+
+    font-size:20px;
+    line-height:1.6;
+    margin-bottom:30px;
+
+}
+
+
+.btn{
+
+    padding:14px 28px;
+    border-radius:25px;
+    border:none;
+    cursor:pointer;
+    font-size:16px;
+    text-decoration:none;
+    margin-right:15px;
+
+}
+
+
+.primary{
+
+    background:#1565c0;
+    color:white;
+
+}
+
+
+.secondary{
+
+    background:white;
+    color:#1565c0;
+    border:2px solid #1565c0;
+
+}
+
+
+.hero-image{
+
+    width:60%;
+    text-align:center;
+
+}
+
+
+.hero-image img{
+
+    width:100%;
+    height:100%;
+    max-width:400px;
+
+}
+
+
+
+/* Overview */
+
+.overview{
+
+    padding:60px;
+
+    text-align:center;
+
+}
+
+
+.overview h2{
+
+    color:#1565c0;
+    font-size:34px;
+    margin-bottom:15px;
+
+}
+
+
+.overview p{
+
+    font-size:18px;
+    margin-bottom:40px;
+
+}
+
+
+
+.overview-cards{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+
+}
+
+
+
+.card{
+
+    background:white;
+    padding:30px 20px;
+    border-radius:18px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+
+.card i{
+
+    font-size:35px;
+    color:#1565c0;
+    margin-bottom:15px;
+
+}
+
+
+.card h3{
+
+    margin-bottom:10px;
+
+}
+
+
+
+@media(max-width:900px){
+
+.hero{
+
+    flex-direction:column;
+
+}
+
+.hero-content,
+.hero-image{
+
+    width:100%;
+    text-align:center;
+
+}
+
+
+.overview-cards{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+}
+/* Workflow */
+
+.workflow{
+
+padding:60px;
+text-align:center;
+
+}
+
+
+.workflow h2,
+.features h2,
+.stats h2{
+
+color:#1565c0;
+font-size:34px;
+margin-bottom:15px;
+
+}
+
+
+.steps{
+
+display:flex;
+justify-content:center;
+align-items:center;
+gap:20px;
+margin-top:40px;
+
+}
+
+
+.step{
+
+background:white;
+padding:25px;
+border-radius:15px;
+width:220px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+
+.circle{
+
+height:45px;
+width:45px;
+background:#1565c0;
+color:white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto auto 15px;
+font-size:20px;
+
+}
+
+
+.arrow{
+
+color:#1565c0;
+font-size:25px;
+
+}
+
+
+
+
+
+/* Features */
+
+
+.features{
+
+padding:60px;
+background:#e3f2fd;
+text-align:center;
+
+}
+
+
+.feature-grid{
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+margin-top:35px;
+
+}
+
+
+.feature-card{
+
+background:white;
+padding:30px;
+border-radius:18px;
+
+}
+
+
+.feature-card i{
+
+font-size:35px;
+color:#1565c0;
+margin-bottom:15px;
+
+}
+
+
+
+
+
+/* Why */
+
+
+.why{
+
+display:flex;
+padding:60px;
+align-items:center;
+gap:40px;
+
+}
+
+.why-session{
+
+padding:70px 60px;
+background:#e3f2fd;
+
+display:flex;
+align-items:center;
+gap:50px;
+
+}
+
+
+.why-content{
+
+width:55%;
+
+}
+
+
+.why-content h2{
+
+font-size:38px;
+color:#1565c0;
+margin-bottom:20px;
+
+}
+
+
+.why-content>p{
+
+font-size:18px;
+line-height:1.6;
+margin-bottom:30px;
+
+}
+
+
+
+.benefit-card{
+
+background:white;
+
+display:flex;
+align-items:center;
+
+padding:18px;
+margin-bottom:18px;
+
+border-radius:15px;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+
+
+.icon{
+
+height:55px;
+width:55px;
+
+background:#bbdefb;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+margin-right:20px;
+
+}
+
+
+.icon i{
+
+font-size:25px;
+color:#1565c0;
+
+}
+
+
+.benefit-card h3{
+
+color:#1565c0;
+margin-bottom:5px;
+
+}
+
+
+.benefit-card p{
+
+color:#555;
+
+}
+
+
+
+.why-image{
+
+width:45%;
+display:flex;
+justify-content:center;
+
+}
+
+
+.image-box{
+
+background:#1565c0;
+
+padding:25px;
+
+border-radius:30px;
+
+}
+
+
+.image-box img{
+
+width:350px;
+height:350px;
+object-fit:cover;
+
+border-radius:20px;
+
+}
+
+
+
+@media(max-width:900px){
+
+.why-session{
+
+flex-direction:column;
+
+}
+
+.why-content,
+.why-image{
+
+width:100%;
+
+}
+
+}
+
+
+
+
+/* Statistics */
+
+
+.stats{
+
+padding:60px;
+text-align:center;
+
+}
+
+
+.stats-container{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+
+}
+
+
+.stat-card{
+
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+
+.stat-card i{
+
+font-size:35px;
+color:#1565c0;
+
+}
+
+
+
+
+/* Continue */
+
+
+.continue{
+
+background:white;
+color:#1565c0;
+padding:60px;
+text-align:center;
+
+}
+
+
+.continue h2{
+
+font-size:35px;
+margin-bottom:15px;
+
+}
+
+
+.continue p{
+
+font-size:18px;
+margin-bottom:30px;
+
+}
+
+
+
+
+
+footer{
+
+background:#0d47a1;
+color:white;
+padding:20px;
+text-align:center;
+
+}
+
+
+
+@media(max-width:900px){
+
+.steps,
+.why{
+
+flex-direction:column;
+
+}
+
+
+.feature-grid,
+.stats-container{
+
+grid-template-columns:1fr;
+
+}
+
+
+.why-text,
+.why-image{
+
+width:100%;
+
+}
+
+}
+.logo{
+
+display:flex;
+align-items:center;
+gap:12px;
+font-size:24px;
+font-weight:bold;
+
+}
+
+
+.logo img{
+
+width:45px;
+height:45px;
+object-fit:contain;
+
+}
+
+
+.logo span{
+
+color:white;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- Navbar -->
+
+<nav class="navbar">
+
+<div class="logo">
+
+<img src="images/logo.jpeg" alt="LoomLearn Logo">
+
+<span>LoomLearn</span>
+
+</div>
+
+
+<div>
+
+<a href="dashboard.html">
+<i class="fa-solid fa-house"></i>
+Dashboard
+</a>
+
+
+<a href="session.html">
+<i class="fa-solid fa-calendar"></i>
+Sessions
+</a>
+
+
+</div>
+
+
+</nav>
+
+
+
+<!-- Hero Section -->
+
+<section class="hero">
+
+
+<div class="hero-content">
+
+
+<h1>
+Session Management
+</h1>
+
+
+<p>
+Create, organize, and manage collaborative learning sessions.
+Connect mentors and learners through a structured tutoring environment.
+</p>
+
+
+<a href="session.html" class="btn primary">
+Go To Sessions
+</a>
+
+
+<a href="dashboard.html" class="btn secondary">
+Dashboard
+</a>
+
+
+</div>
+
+
+
+<div class="hero-image">
+
+<img src="images/session1.jpeg" alt="Session Learning">
+
+</div>
+
+
+</section>
+
+
+
+
+<!-- Overview Section -->
+
+<section class="overview">
+
+
+<h2>
+Manage Learning Sessions Easily
+</h2>
+
+
+<p>
+A complete solution to schedule sessions, track enrollments,
+manage capacity and collect valuable feedback.
+</p>
+
+
+
+<div class="overview-cards">
+
+
+<div class="card">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<h3>
+Schedule Sessions
+</h3>
+
+<p>
+Create and manage learning sessions efficiently.
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<i class="fa-solid fa-user-group"></i>
+
+<h3>
+Mentor & Learner Connection
+</h3>
+
+<p>
+Bring mentors and learners together.
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<i class="fa-solid fa-users"></i>
+
+<h3>
+Enrollment Tracking
+</h3>
+
+<p>
+Monitor learner participation easily.
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<h3>
+Session Insights
+</h3>
+
+<p>
+Analyze learning activities and feedback.
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+<!-- Session Workflow Section -->
+
+<section class="workflow">
+
+<h2>How Session Management Works</h2>
+
+<p>
+A simple workflow that connects mentors and learners through every stage.
+</p>
+
+
+<div class="steps">
+
+
+<div class="step">
+
+<div class="circle">1</div>
+
+<h3>Create Session</h3>
+
+<p>
+Mentors create learning sessions with required details.
+</p>
+
+</div>
+
+
+
+<div class="arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+
+
+<div class="step">
+
+<div class="circle">2</div>
+
+<h3>Assign Mentor</h3>
+
+<p>
+Sessions are organized with suitable mentors.
+</p>
+
+</div>
+
+
+
+<div class="arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+
+
+<div class="step">
+
+<div class="circle">3</div>
+
+<h3>Student Enrollment</h3>
+
+<p>
+Learners join available sessions.
+</p>
+
+</div>
+
+
+
+<div class="arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+
+
+<div class="step">
+
+<div class="circle">4</div>
+
+<h3>Feedback</h3>
+
+<p>
+Learners share feedback after completion.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- Features Section -->
+
+
+<section class="features">
+
+
+<h2>Powerful Session Features</h2>
+
+
+<div class="feature-grid">
+
+
+<div class="feature-card">
+
+<i class="fa-solid fa-clock"></i>
+
+<h3>Smart Scheduling</h3>
+
+<p>
+Plan sessions with proper timing and organization.
+</p>
+
+</div>
+
+
+
+<div class="feature-card">
+
+<i class="fa-solid fa-user-check"></i>
+
+<h3>Capacity Control</h3>
+
+<p>
+Manage maximum learners for every session.
+</p>
+
+</div>
+
+
+
+<div class="feature-card">
+
+<i class="fa-solid fa-list-check"></i>
+
+<h3>Enrollment Management</h3>
+
+<p>
+Track learner registrations easily.
+</p>
+
+</div>
+
+
+
+<div class="feature-card">
+
+<i class="fa-solid fa-chart-simple"></i>
+
+<h3>Session Tracking</h3>
+
+<p>
+Monitor session progress and status.
+</p>
+
+</div>
+
+
+
+<div class="feature-card">
+
+<i class="fa-solid fa-comments"></i>
+
+<h3>Feedback Collection</h3>
+
+<p>
+Collect valuable learner responses.
+</p>
+
+</div>
+
+
+
+<div class="feature-card">
+
+<i class="fa-solid fa-database"></i>
+
+<h3>Session Records</h3>
+
+<p>
+Maintain organized session information.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- Why Session Management -->
+
+<section class="why-session">
+
+<div class="why-content">
+
+<h2>
+Why Use Session Management?
+</h2>
+
+<p>
+LoomLearn Session Management helps mentors and learners
+organize learning activities in a simple and effective way.
+</p>
+
+
+<div class="benefit-card">
+
+<div class="icon">
+<i class="fa-solid fa-calendar-check"></i>
+</div>
+
+<div>
+<h3>Easy Organization</h3>
+<p>
+Create and manage sessions without confusion.
+</p>
+</div>
+
+</div>
+
+
+
+<div class="benefit-card">
+
+<div class="icon">
+<i class="fa-solid fa-users"></i>
+</div>
+
+<div>
+<h3>Better Collaboration</h3>
+<p>
+Connect mentors and learners smoothly.
+</p>
+</div>
+
+</div>
+
+
+
+<div class="benefit-card">
+
+<div class="icon">
+<i class="fa-solid fa-chart-line"></i>
+</div>
+
+<div>
+<h3>Track Progress</h3>
+<p>
+Monitor sessions and learning activities.
+</p>
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<div class="why-image">
+
+<div class="image-box">
+
+<img src="images/session4.jpeg">
+
+</div>
+
+</div>
+
+
+</section>
+
+<!-- Statistics -->
+
+
+<section class="stats">
+
+
+<h2>
+Session Overview
+</h2>
+
+
+<div class="stats-container">
+
+
+<div class="stat-card">
+
+<i class="fa-solid fa-calendar"></i>
+
+<h1>120+</h1>
+
+<p>Sessions Created</p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<i class="fa-solid fa-chalkboard-user"></i>
+
+<h1>35+</h1>
+
+<p>Active Mentors</p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<i class="fa-solid fa-users"></i>
+
+<h1>450+</h1>
+
+<p>Learners Joined</p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<i class="fa-solid fa-star"></i>
+
+<h1>4.8</h1>
+
+<p>Average Rating</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- Continue Section -->
+
+
+<section class="continue">
+
+
+<h2>
+Ready To Manage Your Sessions?
+</h2>
+
+
+<p>
+Continue to the Session Portal and create, update,
+view and manage your tutoring sessions.
+</p>
+
+
+<a href="Session.html" class="btn primary">
+Continue To Session Portal
+</a>
+
+
+<a href="dashboard.html" class="btn secondary">
+Back To Dashboard
+</a>
+
+
+</section>
+
+
+
+
+<!-- Footer -->
+
+
+<footer>
+
+<p>
+© 2026 LoomLearn | Collaborative Peer Learning Platform
+</p>
+
+</footer>
+
+</body>
+</html>
